@@ -1,24 +1,27 @@
 {
-  "name": "projects_management",
+  "name": "cicd-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "test": "mocha test/*.spec.js --color",
+    "test": "mocha tests/*.spec.js --color",
     "lint": "eslint src/*.js --color",
     "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edenvvv/Projects-Management.git"
+    "url": "git+https://github.com/yanivbenzvi/cicd-example.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/edenvvv/Projects-Management/issues"
+    "url": "https://github.com/yanivbenzvi/cicd-example/issues"
   },
-  "homepage": "https://github.com/edenvvv/Projects-Management#readme",
+  "homepage": "https://github.com/yanivbenzvi/cicd-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.1",
@@ -26,8 +29,5 @@
     "eslint": "^7.21.0",
     "mocha": "^8.3.0",
     "nodemon": "^2.0.7"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
   }
 }
