@@ -1,0 +1,29 @@
+{
+  "name": "projects_management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "test": "mocha test/*.spec.js --color",
+    "lint": "eslint src/*.js --color",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edenvvv/Projects-Management.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edenvvv/Projects-Management/issues"
+  },
+  "homepage": "https://github.com/edenvvv/Projects-Management#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.1",
+    "chai": "^4.3.3",
+    "eslint": "^7.21.0",
+    "mocha": "^8.3.0"
+  }
+}
