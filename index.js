@@ -4,18 +4,19 @@ const app = express()
 const path = require('path')
 const router = express.Router()
 
-app.use(express.static('public'))
 
 app.set('view engine', 'ejs')
 
-router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname, '../public/html/home.ejs'))
-  res.render('../public/html/home')
+app.use(express.static('public'))
 
+
+
+router.get('/',function(req,res){
+  res.render('home')
 })
 
 router.get('/login',function(req,res){
-  res.sendFile(path.join(__dirname, '../public/html/login.ejs'))
+  res.render('login')
 })
 
 app.use('/css',express.static(__dirname +'/css'))
