@@ -9,7 +9,6 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 
-
 router.get('/',function(req,res){
   res.render('home')
 })
