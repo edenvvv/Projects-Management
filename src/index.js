@@ -3,12 +3,12 @@ const app_port = process.env.PORT || 3000
 const app = express()
 
 app.get('/', function(req,res){
-    res.sendFile(__dirname + '\\home.html');
-}); 
+    res.sendFile(__dirname + '\\home.html')
+})
 
 app.get('/login', function(req,res){
-    res.sendFile(__dirname + '\\login.html');
-}); 
+    res.sendFile(__dirname + '\\login.html')
+})
 
 app.listen(app_port)
 console.log(`app is running. port: ${app_port}`)
