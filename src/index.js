@@ -6,12 +6,16 @@ const router = express.Router()
 
 app.use(express.static('public'))
 
+app.set('view engine', 'ejs')
+
 router.get('/',function(req,res){
-  res.sendFile(path.join(__dirname, '../public/html/home.html'))
+  res.sendFile(path.join(__dirname, '../public/html/home.ejs'))
+  res.render('../public/html/home')
+
 })
 
 router.get('/login',function(req,res){
-  res.sendFile(path.join(__dirname, '../public/html/login.html'))
+  res.sendFile(path.join(__dirname, '../public/html/login.ejs'))
 })
 
 app.use('/css',express.static(__dirname +'/css'))
