@@ -4,7 +4,7 @@ const app = express()
 const path = require('path')
 const router = express.Router()
 
-app.use(express.static("public"))
+app.use(express.static('public'))
 
 router.get('/',function(req,res){
   res.sendFile(path.join(__dirname, '../public/html/home.html'))
@@ -14,7 +14,7 @@ router.get('/login',function(req,res){
   res.sendFile(path.join(__dirname, '../public/html/login.html'))
 })
 
-app.use('/css',express.static(__dirname +'/css'));
+app.use('/css',express.static(__dirname +'/css'))
 
 //add the router
 app.use('/', router)
