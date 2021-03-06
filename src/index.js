@@ -2,8 +2,12 @@ const express  = require('express')
 const app_port = process.env.PORT || 3000
 const app = express()
 
-app.get('/home', function(req,res){
-    res.send(__dirname + '/src/home.html');
+app.get('/', function(req,res){
+    res.sendFile(__dirname + '\\home.html');
+}); 
+
+app.get('/login', function(req,res){
+    res.sendFile(__dirname + '\\login.html');
 }); 
 
 app.listen(app_port)
