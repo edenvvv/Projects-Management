@@ -10,22 +10,23 @@ app.use(express.static('public'))
 
 
 router.get('/',function(req,res){
-  res.render('home')
+  res.status(200).render('home')
+  //res.render('home')
 })
 
 router.get('/login',function(req,res){
-  res.render('login')
+  res.status(200).render('login')
 })
 
 router.get('/signup',function(req,res){
-  res.render('signup')
+  res.status(200).render('signup')
 })
 
 app.use('/css',express.static(__dirname +'/css'))
 
 //add the router
 app.use('/', router)
-app.listen(app_port)
+module.exports = app.listen(app_port)
 
 console.log(`app is running. port: ${app_port}`)
 console.log(`http://127.0.0.1:${app_port}/`)
