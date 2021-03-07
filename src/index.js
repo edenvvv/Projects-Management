@@ -17,6 +17,10 @@ router.get('/login',function(req,res){
   res.render('login')
 })
 
+router.get('/signup',function(req,res){
+  res.render('signup')
+})
+
 app.use('/css',express.static(__dirname +'/css'))
 
 //add the router
