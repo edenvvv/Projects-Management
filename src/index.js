@@ -11,7 +11,6 @@ app.use(express.static('public'))
 
 router.get('/',function(req,res){
   res.status(200).render('home')
-  //res.render('home')
 })
 
 router.get('/login',function(req,res){
