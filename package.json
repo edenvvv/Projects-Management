@@ -22,7 +22,8 @@
   "dependencies": {
     "chai-http": "^4.3.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@types/chai": "^4.2.15",

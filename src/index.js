@@ -21,8 +21,6 @@ router.get('/signup',function(req,res){
   res.status(200).render('signup')
 })
 
-app.use('/css',express.static(__dirname +'/css'))
-
 //add the router
 app.use('/', router)
 module.exports = app.listen(app_port)
