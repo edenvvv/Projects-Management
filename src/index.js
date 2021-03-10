@@ -21,6 +21,8 @@ router.get('/signup',function(req,res){
   res.status(200).render('signup')
 })
 
+
+
 //add the router
 app.use('/', router)
 module.exports = app.listen(app_port)
