@@ -52,6 +52,7 @@
                 return false;
             }
         }
+        return true;
     }
 
     function showValidate(input) {
