@@ -21,7 +21,9 @@ router.get('/signup',function(req,res){
   res.status(200).render('signup')
 })
 
-
+router.post('/nig', (req, res) => {
+  console.log('Hellooooooooooooooooo!')
+})
 
 //add the router
 app.use('/', router)
