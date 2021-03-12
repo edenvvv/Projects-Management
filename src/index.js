@@ -2,12 +2,14 @@ const express = require('express')
 const app_port = process.env.PORT || 3000
 const app = express()
 const router = express.Router()
+const bodyParser= require('body-parser')
 
 
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 
+app.use(bodyParser.urlencoded({ extended: true }))
 
 router.get('/',function(req,res){
   res.status(200).render('home')
@@ -21,8 +23,8 @@ router.get('/signup',function(req,res){
   res.status(200).render('signup')
 })
 
-router.post('/nig', (/*req, res*/) => {
-  console.log('Hellooooooooooooooooo!')
+router.post('/nig', (req, res) => {
+  console.log(req.body)
 })
 
 //add the router
