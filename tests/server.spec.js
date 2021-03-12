@@ -19,7 +19,7 @@ describe("SERVER CONNECT TESTS", function() {
 
     it("Login page /get", function(done) {
       chai.request(server)
-      .get("/")
+      .get("/login")
       .end(function(err, res){
         res.should.have.status(200);
         done();
