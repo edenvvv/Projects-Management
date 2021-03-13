@@ -9,38 +9,48 @@ const connectionString = 'mongodb+srv://team15:Ade123321!@cluster0.3jopa.mongodb
 
 
 
-app.set('view engine', 'ejs')
-
-app.use(express.static('public'))
-
-app.use(bodyParser.urlencoded({ extended: true }))
-
-router.get('/',function(req,res){
-  res.status(200).render('home')
-})
-
-router.get('/login',function(req,res){
-  res.status(200).render('login')
-})
-
-router.get('/signup',function(req,res){
-  res.status(200).render('signup')
-})
-
-router.post('/nig', (req, /*res*/) => {
-  console.log(req.body)
-})
 
 
-MongoClient.connect(connectionString, (err, /*client*/) => {
-  
-  if (err) return console.error(err)
-  console.log('Connected to Database')
-})
 
-//add the router
-app.use('/', router)
-module.exports = app.listen(app_port)
+MongoClient.connect(connectionString, { 
+  useUnifiedTopology: true })
+  .then(client => {
+    console.log('Connected to Database')
+    const db = client.db('MedicalDB')
+    const quotesCollection = db.collection('quotes')
+    app.set('view engine', 'ejs')
+
+    app.use(express.static('public'))
+
+    app.use(bodyParser.urlencoded({ extended: true }))
+
+    router.get('/',function(req,res){
+      res.status(200).render('home')
+    })
+
+    router.get('/login',function(req,res){
+      res.status(200).render('login')
+    })
+
+    router.get('/signup',function(req,res){
+      res.status(200).render('signup')
+    })
+    
+    router.post('/signup', (req, res) => {
+      quotesCollection.insertOne(req.body)
+        .then(result => {
+          res.redirect('/')
+        })
+        .catch(error => console.error(error))
+    })
+    app.use('/', router)//add the router
+    module.exports = app.listen(app_port)
+    
+  })
+  .catch(error => console.error(error))
+
+
+
 
 console.log(`app is running. port: ${app_port}`)
 console.log(`http://127.0.0.1:${app_port}/`)
