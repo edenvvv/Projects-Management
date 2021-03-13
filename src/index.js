@@ -1,5 +1,5 @@
 const express = require('express')
-const app_port = process.env.PORT || 3000
+const app_port = process.env.MONGODB_URI|| 3000
 const app = express()
 const router = express.Router()
 const bodyParser= require('body-parser')
