@@ -25,6 +25,11 @@ MongoClient.connect(connectionString, {
 
     router.get('/login',function(req,res){
       res.status(200).render('login')
+      db.collection('users').find().toArray()
+        .then(results => {
+          console.log(results)
+        })
+        .catch(error => console.error(error))
     })
 
     router.get('/signup',function(req,res){
@@ -38,6 +43,12 @@ MongoClient.connect(connectionString, {
         )
         .catch(error => console.error(error))
     })
+
+
+
+
+
+
     app.use('/', router)//add the router
     
     
