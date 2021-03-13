@@ -4,14 +4,16 @@
 
 ## Requirements:
 
-Node.js 14.16.0 and up
+- Node.js 14.16.0 and up <br/>
+- MongoDB 4.4 and up
 
 ## Modules requirements:
 
 `npm install express`<br/>
 `npm install nodemon`<br/>
 `npm install chai-http`<br/>
-`npm install ejs`
+`npm install ejs`<br/>
+`npm install mongodb --save`
 
 ## Run:
 
