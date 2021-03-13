@@ -13,7 +13,7 @@
 `npm install nodemon`<br/>
 `npm install chai-http`<br/>
 `npm install ejs`<br/>
-`npm install MongoDB`
+`npm install mongodb`
 
 ## Run:
 
