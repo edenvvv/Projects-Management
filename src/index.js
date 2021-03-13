@@ -4,7 +4,8 @@ const app = express()
 const router = express.Router()
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient
-const connectionString = "mongodb+srv://team15:Ade123321!@cluster0.3jopa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const connectionString = 'mongodb+srv://team15:Ade123321!@cluster0.3jopa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
 
 
 
@@ -31,7 +32,7 @@ router.post('/nig', (req, /*res*/) => {
 })
 
 
-MongoClient.connect(connectionString, (err, client) => {
+MongoClient.connect(connectionString, (err, /*client*/) => {
   
   if (err) return console.error(err)
   console.log('Connected to Database')
