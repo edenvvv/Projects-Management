@@ -33,9 +33,9 @@ MongoClient.connect(connectionString, {
     
     router.post('/signup', (req, res) => {
       usersCollection.insertOne(req.body)
-        .then(result => {
+        .then(
           res.redirect('/')
-        })
+        )
         .catch(error => console.error(error))
     })
     app.use('/', router)//add the router
