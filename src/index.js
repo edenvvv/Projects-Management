@@ -1,5 +1,5 @@
 const express = require('express')
-const app_port = process.env.MONGODB_URI|| 3000
+const app_port = process.env.PORT|| 3000
 const app = express()
 const router = express.Router()
 const bodyParser= require('body-parser')
@@ -25,6 +25,13 @@ MongoClient.connect(connectionString, {
 
     router.get('/login',function(req,res){
       res.status(200).render('login')
+    /*
+      db.collection('users').find().toArray()
+        .then(results => {
+          console.log(results)
+        })
+        .catch(error => console.error(error))
+    */
     })
 
     router.get('/signup',function(req,res){
@@ -33,11 +40,13 @@ MongoClient.connect(connectionString, {
     
     router.post('/signup', (req, res) => {
       usersCollection.insertOne(req.body)
-        .then(result => {
+        .then(
           res.redirect('/')
-        })
+        )
         .catch(error => console.error(error))
     })
+
+
     app.use('/', router)//add the router
     
     
