@@ -7,7 +7,7 @@
 - Node.js 14.16.0 and up <br/>
 - MongoDB 4.4 and up
 
-## Modules requirements:
+## Modules requirements :
 
 `npm install express`<br/>
 `npm install nodemon`<br/>
@@ -15,6 +15,6 @@
 `npm install ejs`<br/>
 `npm install mongodb`
 
-## Run:
+## Run :
 
 `npm run dev`
