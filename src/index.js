@@ -44,7 +44,6 @@ MongoClient.connect(connectionString, {
               res.redirect('/')
             } else {
               console.log('Credentials wrong')
-              res.redirect('/login?err=The username or password is invalid')
               /*window.alert("Sorry, your email or password was incorrect. Please try again.")*/
               res.redirect('/login')
             }
