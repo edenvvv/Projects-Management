@@ -385,7 +385,7 @@ a {
     display: none; }
 
 .form-inner {
-  background: #368dda;
+  background: #7591A3;
   padding-top: 16.36vh;
   padding-left: 4vw;
   padding-right: 4vw; }
@@ -396,11 +396,6 @@ form {
 .form-header {
   text-align: center;
   margin-bottom: 39px; }
-
-h3 {
-  text-transform: uppercase;
-  font-size: 40px;
-  font-family: "ChelseaMarket-Regular"; }
 
 label {
   margin-bottom: 11px;
@@ -481,8 +476,7 @@ button {
 
 
 p {
-  font-family: "Muli-SemiBold";
-  color: #ffff66;
+
   margin-bottom: 22px; }
 
 @media (max-width: 1500px) {
