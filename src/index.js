@@ -29,25 +29,21 @@ MongoClient.connect(connectionString, {
 
     router.post('/login', (req, res) => {
         usersCollection.findOne({ email: req.body.email}, function(err, user) {
-          // In case the user not found 
-          if(!user) {
-            console.log('Mail invalid')
-            res.redirect('/login')
-          }
-          else {
-            if(err) {
-              console.log('THIS IS ERROR RESPONSE')
-              res.json(err)
-            }
+          if(user) {
             if (user.password === req.body.pass){
               console.log('User and password is correct')
-              res.redirect('/')
-            } else {
-              console.log('Credentials wrong')
-              /*window.alert("Sorry, your email or password was incorrect. Please try again.")*/
-              res.redirect('/login')
+              return res.redirect('/')
             }
-          }           
+          }
+          if(err) {
+            console.log('THIS IS ERROR RESPONSE')
+            return res.json(err)
+          }
+          if(req.body.email !== undefined && req.body.pass !== undefined){
+            console.log('Credentials wrong')
+            //return res.jsonp({success : true})
+            res.redirect('/login')
+          }
         })  
     })
 

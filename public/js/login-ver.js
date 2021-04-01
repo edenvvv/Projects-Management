@@ -40,6 +40,24 @@
         });
     });
 
+    $('.validate-form').on('submit',function(){
+    $.ajax({
+        url:"/login",
+        method: "POST",
+        data : {
+            data : "what you want to send",
+            put : "them here"
+        },
+        cache : false,
+        success: function(response){
+            alert('evaluate response and show alert');
+        },
+        error : function () {
+            // some error handling part
+            alert("Oops! Something went wrong.");
+        }
+    })});
+
     function validate (input) {
         if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
             if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
