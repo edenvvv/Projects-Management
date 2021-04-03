@@ -59,6 +59,7 @@ MongoClient.connect(connectionString, {
     })
     
     router.post('/signup', (req, res) => {
+      req.body.role = 'simple_user'
       usersCollection.insertOne(req.body)
         .then(
           res.redirect('/')
@@ -67,14 +68,18 @@ MongoClient.connect(connectionString, {
     })
 
     router.get('/test', checkToken, function(req,res){
-      console.log('GET - test')
       const { role } = req.user
       console.log(req.user)
   
-      if (role !== 'Admin') {
+      if (role !== 'admin') {
           return res.sendStatus(403)
       }
       res.status(200).render('test')
+    })
+
+    router.get('/logout', function(req,res){
+      req.cookies.authcookie = undefined
+      return res.redirect('/')
     })
 
 
@@ -86,7 +91,7 @@ MongoClient.connect(connectionString, {
 
 
   function checkToken(req, res, next) {
-    console.log(req.cookies.authcookie)
+    //console.log(req.cookies.authcookie)
     const authcookie = req.cookies.authcookie
     jwt.verify(authcookie,accessTokenSecret,(err,data)=>{
       if(err){
