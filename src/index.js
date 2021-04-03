@@ -69,7 +69,7 @@ MongoClient.connect(connectionString, {
 
     router.get('/test', checkToken, function(req,res){
       const { role } = req.user
-      console.log(req.user)
+      //console.log(req.user)
   
       if (role !== 'admin') {
           return res.sendStatus(403)
@@ -78,8 +78,8 @@ MongoClient.connect(connectionString, {
     })
 
     router.get('/logout', function(req,res){
-      req.cookies.authcookie = undefined
-      return res.redirect('/')
+      res.clearCookie("authcookie");
+      res.redirect('/');
     })
 
 
