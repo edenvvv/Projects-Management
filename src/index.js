@@ -80,8 +80,8 @@ MongoClient.connect(connectionString, {
     })
 
     router.get('/logout', function(req,res){
-      res.clearCookie('authcookie');
-      res.redirect('/');
+      res.clearCookie('authcookie')
+      res.redirect('/')
     })
 
 
