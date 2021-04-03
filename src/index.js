@@ -23,8 +23,10 @@ MongoClient.connect(connectionString, {
     app.use(bodyParser.json())
 
     app.use(cookieParser())
+    
+      
 
-    router.get('/',function(req,res){
+    router.get('/', function(req,res){
       res.status(200).render('home')
     })
 
@@ -78,7 +80,7 @@ MongoClient.connect(connectionString, {
     })
 
     router.get('/logout', function(req,res){
-      res.clearCookie("authcookie");
+      res.clearCookie('authcookie');
       res.redirect('/');
     })
 
@@ -101,7 +103,7 @@ MongoClient.connect(connectionString, {
         req.user = data
         next()
       }
-    }
+    }    
   )}
 
 module.exports = app.listen(app_port)

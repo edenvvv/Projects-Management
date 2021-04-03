@@ -16,6 +16,7 @@
 `npm install mongodb`<br/>
 `npm install cookie-parser`<br/>
 `npm install jsonwebtoken`<br/>
+`npm install passport`<br/>
 
 ## Run :
 

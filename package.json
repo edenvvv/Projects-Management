@@ -30,6 +30,7 @@
     "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
+    "passport": "^0.4.1",
     "yarn": "^1.22.10"
   },
   "devDependencies": {
