@@ -14,8 +14,6 @@
 `npm install chai-http`<br/>
 `npm install ejs`<br/>
 `npm install mongodb`<br/>
-
-To be checked:
 `npm install cookie-parser`<br/>
 `npm install jsonwebtoken`<br/>
 
