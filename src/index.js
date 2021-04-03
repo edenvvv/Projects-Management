@@ -5,7 +5,9 @@ const router = express.Router()
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const connectionString = 'mongodb+srv://team15:Ade123321!@cluster0.3jopa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-
+const cookieParser = require('cookie-parser')
+const jwt = require('jsonwebtoken')
+const accessTokenSecret = '6f6794a83fc9f561f1089dc70217f1946e76f7a892d45dedff1c7a3d3b2dacd5c869d30b295716c552a20442a3cf229c2446d6cbf9075ab229e05e9d7377cb3b'
 
 MongoClient.connect(connectionString, { 
   useUnifiedTopology: true })
@@ -16,8 +18,11 @@ MongoClient.connect(connectionString, {
     app.set('view engine', 'ejs')
 
     app.use(express.static('public'))
-
+  
     app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(bodyParser.json())
+
+    app.use(cookieParser())
 
     router.get('/',function(req,res){
       res.status(200).render('home')
@@ -32,6 +37,8 @@ MongoClient.connect(connectionString, {
           if(user) {
             if (user.password === req.body.pass){
               console.log('User and password is correct')
+              const accessToken = jwt.sign({ email: user.email,  role: user.role }, accessTokenSecret)
+              res.cookie('authcookie', accessToken ,{maxAge:900000, httpOnly:true})
               return res.redirect('/')
             }
           }
@@ -41,7 +48,6 @@ MongoClient.connect(connectionString, {
           }
           if(req.body.email !== undefined && req.body.pass !== undefined){
             console.log('Credentials wrong')
-            //return res.jsonp({success : true})
             res.redirect('/login')
           }
         })  
@@ -60,12 +66,38 @@ MongoClient.connect(connectionString, {
         .catch(error => console.error(error))
     })
 
+    router.get('/test', checkToken, function(req,res){
+      console.log('GET - test')
+      const { role } = req.user
+      console.log(req.user)
+  
+      if (role !== 'Admin') {
+          return res.sendStatus(403)
+      }
+      res.status(200).render('test')
+    })
+
 
     app.use('/', router)//add the router
     
     
   })
   .catch(error => console.error(error))
+
+
+  function checkToken(req, res, next) {
+    console.log(req.cookies.authcookie)
+    const authcookie = req.cookies.authcookie
+    jwt.verify(authcookie,accessTokenSecret,(err,data)=>{
+      if(err){
+        res.sendStatus(403)
+      } 
+      else if(data){
+        req.user = data
+        next()
+      }
+    }
+  )}
 
 module.exports = app.listen(app_port)
 console.log(`app is running. port: ${app_port}`)
