@@ -51,7 +51,7 @@ MongoClient.connect(connectionString, {
             return res.json(err)
           }
           if(req.body.email !== undefined && req.body.pass !== undefined){
-            alert("invalid username or password, please try again")
+            alert('invalid username or password, please try again')
             console.log('Credentials wrong')
             res.redirect('/login')
           }
