@@ -32,8 +32,14 @@ MongoClient.connect(connectionString, {
       res.status(200).render('home')
     })
 
-    router.get('/login',function(req,res){
-      res.status(200).render('login')
+    router.get('/login', checkToken, function(req,res){
+      const { role } = req.user
+      // only users who are not login can enter
+      if (role == -1 || role == undefined) {
+        return res.status(200).render('login')
+      }
+      alert('You are already logged in, if you want to connect to another account you are welcome but you must log out before')
+      return res.redirect('/')
     })
 
     router.post('/login', (req, res) => {
@@ -82,7 +88,12 @@ MongoClient.connect(connectionString, {
       res.status(200).render('test')
     })
 
-    router.get('/logout', function(req,res){
+    router.get('/logout', checkToken, function(req,res){
+      const { role } = req.user
+      // Only login users can log out
+      if (role == -1 || role == undefined) {
+        alert('You are not a registered user, you have no reason to log out')
+      }
       res.clearCookie('authcookie')
       res.redirect('/')
     })
@@ -100,7 +111,8 @@ MongoClient.connect(connectionString, {
     const authcookie = req.cookies.authcookie
     jwt.verify(authcookie,accessTokenSecret,(err,data)=>{
       if(err){
-        res.sendStatus(403)
+        req.user = -1  //res.sendStatus(403)
+        next()
       } 
       else if(data){
         req.user = data
