@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const accessTokenSecret = '6f6794a83fc9f561f1089dc70217f1946e76f7a892d45dedff1c7a3d3b2dacd5c869d30b295716c552a20442a3cf229c2446d6cbf9075ab229e05e9d7377cb3b'
 
-let alert = require('alert')
+const alert = require('alert')
 
 MongoClient.connect(connectionString, { 
   useUnifiedTopology: true })
