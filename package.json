@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yanivbenzvi/cicd-example#readme",
   "dependencies": {
+    "alert": "^5.0.10",
     "body-parser": "^1.19.0",
     "chai-http": "^4.3.0",
     "cookie-parser": "^1.4.5",
@@ -30,6 +31,7 @@
     "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.4",
+    "node-popup": "^0.1.14",
     "passport": "^0.4.1",
     "yarn": "^1.22.10"
   },
