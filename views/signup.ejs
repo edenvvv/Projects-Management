@@ -62,6 +62,31 @@
                 <label for="">Password:</label>
                 <input type="password" class="form-control" data-validation="length" data-validation-length="min8" name="password">
             </div>
+
+            <label for="doctor">you are a doctor? :</label> 
+            <input type="checkbox" id="doctor" onclick="doctorFunction()">
+            
+            <p id="text" style="display:none">until the admin confirm you are a doctor, you registered as a simple user</p>
+            <div id="inp" class="form-group" style="display:none">
+                <label for="">doctorID:</label>
+                <input type="password" class="form-control" data-validation="length" data-validation-length="min8" name="doctorID">
+            </div>
+            
+            <script>
+            function doctorFunction() {
+              var checkBox = document.getElementById("doctor");
+              var text = document.getElementById("text");
+              var inp = document.getElementById("inp");
+              if (checkBox.checked == true){
+                text.style.display = "block";
+                inp.style.display = "block";
+              } else {
+                 text.style.display = "none";
+                 inp.style.display = "none";
+              }
+            }
+            </script>
+            
             <button type="submit">create my account</button>
         </form>
     </div>
