@@ -30,6 +30,9 @@
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="css/signup-css/style.css">
 
+  <script src="https://smtpjs.com/v3/smtp.js"></script> 
+
+
 </head>
 
 <body>
@@ -92,6 +95,26 @@
             
             <button type="submit">create my account</button>
         </form>
+
+        <form method="post">
+          <input type="button" value="Send Email" onclick="sendEmail()"/>
+        </form> 
+
+        <script>
+            function sendEmail() {
+              Email.send({
+              Host: "smtp.live.com",
+              Username : "MedicalAdmi@hotmail.com",
+              Password : "Ade123321!",
+              To : 'edenvvv@gmail.com',
+              From : "MedicalAdmi@hotmail.com",
+              Subject : "test",
+              Body : "email bodywwwwwwwwwwwwwwwwwwww",
+              }).then(
+                message => alert("mail sent successfully")
+              );
+            }
+        </script>
     </div>
     
 </div>
