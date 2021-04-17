@@ -71,50 +71,17 @@
                 <input type="checkbox" id="doctor" onclick="doctorFunction()">  Im a doctor!&nbsp;
               </label>
             </div>   
-
+  
             <p id="text" style="display:none">until the admin confirm you are a doctor, you registered as a simple user</p>
             <div id="inp" class="form-group" style="display:none">
                 <label for="">doctorID:</label>
-                <input type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID">
+                <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID">
             </div>
-            
-            <script>
-            function doctorFunction() {
-              var checkBox = document.getElementById("doctor");
-              var text = document.getElementById("text");
-              var inp = document.getElementById("inp");
-              if (checkBox.checked == true){
-                text.style.display = "block";
-                inp.style.display = "block";
-              } else {
-                 text.style.display = "none";
-                 inp.style.display = "none";
-              }
-            }
-            </script>
+            <input id="sendEmailButton" type="button" value="Request for approval" onclick="sendEmail()" style="display:none"/>
             
             <button type="submit">create my account</button>
         </form>
 
-        <form method="post">
-          <input type="button" value="Send Email" onclick="sendEmail()"/>
-        </form> 
-
-        <script>
-            function sendEmail() {
-              Email.send({
-              Host: "smtp.live.com",
-              Username : "MedicalAdmi@hotmail.com",
-              Password : "Ade123321!",
-              To : 'edenvvv@gmail.com',
-              From : "MedicalAdmi@hotmail.com",
-              Subject : "test",
-              Body : "email bodywwwwwwwwwwwwwwwwwwww",
-              }).then(
-                message => alert("mail sent successfully")
-              );
-            }
-        </script>
     </div>
     
 </div>
@@ -135,6 +102,45 @@
     <script src="js/signup-js/jquery-3.3.1.min.js"></script>
     <script src="js/signup-js/jquery.form-validator.min.js"></script>
     <script src="js/signup-js/main.js"></script>
+    <script>
+      function doctorFunction() {
+        var checkBox = document.getElementById("doctor");
+        var text = document.getElementById("text");
+        var inp = document.getElementById("inp");
+        var sendEmailButton = document.getElementById("sendEmailButton");
+        if (checkBox.checked == true){
+          text.style.display = "block";
+          inp.style.display = "block";
+          sendEmailButton.style.display = "block";
+        } else {
+           text.style.display = "none";
+           inp.style.display = "none";
+           sendEmailButton.style.display = "none";
+        }
+      }
+      </script>
+
+    <script>
+      function sendEmail() {
+        if(document.getElementById("dID").value.length >= 5){
+          sendEmailButton.style.display = "none";
+          Email.send({
+          Host: "smtp.live.com",
+          Username : "MedicalAdmi@hotmail.com",
+          Password : "Ade123321!",
+          To : 'MedicalAdmi@hotmail.com',
+          From : "MedicalAdmi@hotmail.com",
+          Subject : "A new doctor asks for approval",
+          Body : "Doctor id: " + document.getElementById("dID").value,
+          }).then(
+            message => alert("mail sent successfully")
+          );
+        }
+        else{
+          alert("The doctor's id should be over 5 characters")
+        }
+      }
+    </script>
     
     <script src="js/main.js"></script>
 
