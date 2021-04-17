@@ -69,8 +69,14 @@ MongoClient.connect(connectionString, {
     })
 
 
-    router.get('/signup',function(req,res){
-      res.status(200).render('signup')
+    router.get('/signup', checkToken, function(req,res){
+      const { role } = req.user
+      // only users who are not login can enter
+      if (role == -1 || role == undefined) {
+        return res.status(200).render('signup')
+      }
+      alert('You are already logged in, if you want to sign up you are welcome but you must log out before')
+      return res.redirect('/')
     })
     
     router.post('/signup', (req, res) => {
