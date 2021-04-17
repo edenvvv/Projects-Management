@@ -199,6 +199,11 @@
     left: 100%;
     visibility: visible;
   }
+
+  .welcome-message{
+    font-size: 14px;
+    padding-left: 10px;
+  }
   
   @media (max-width: 1366px) {
     .navbar .dropdown .dropdown ul {

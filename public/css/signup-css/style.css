@@ -199,6 +199,11 @@
     left: 100%;
     visibility: visible;
   }
+
+  .welcome-message{
+    font-size: 14px;
+    padding-left: 10px;
+  }
   
   @media (max-width: 1366px) {
     .navbar .dropdown .dropdown ul {
@@ -385,7 +390,7 @@ a {
     display: none; }
 
 .form-inner {
-  background: #7591A3;
+  background: hsl(203, 20%, 55%);
   padding-top: 16.36vh;
   padding-left: 4vw;
   padding-right: 4vw; }

@@ -26,6 +26,8 @@ MongoClient.connect(connectionString, {
 
     app.use(cookieParser())
     
+    app.locals.userLoggedIn = 0 // 0 - Disconnected user, 1 - Connected user
+    app.locals.userName = 0
       
 
     router.get('/', function(req,res){
@@ -49,6 +51,8 @@ MongoClient.connect(connectionString, {
               console.log('User and password is correct')
               const accessToken = jwt.sign({ email: user.email,  role: user.role }, accessTokenSecret)
               res.cookie('authcookie', accessToken ,{maxAge:900000, httpOnly:true})
+              app.locals.userLoggedIn = 1
+              app.locals.userName = user.user_name
               return res.redirect('/')
             }
           }
@@ -94,6 +98,8 @@ MongoClient.connect(connectionString, {
       if (role == -1 || role == undefined) {
         alert('You are not a registered user, you have no reason to log out')
       }
+      app.locals.userLoggedIn = 0
+      app.locals.userName = 0
       res.clearCookie('authcookie')
       res.redirect('/')
     })

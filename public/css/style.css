@@ -327,6 +327,11 @@ h1, h2, h3, h4, h5, h6 {
   visibility: visible;
 }
 
+.welcome-message{
+  font-size: 14px;
+  padding-left: 10px;
+}
+
 @media (max-width: 1366px) {
   .navbar .dropdown .dropdown ul {
     left: -90%;
