@@ -123,6 +123,11 @@ MongoClient.connect(connectionString, {
             res.status(200).render('search')
         })
 
+        router.post('/search', function(req, res) {
+            console.log(req.body.search_box)
+            return res.redirect('search')
+        })
+
 
         app.use('/', router) //add the router
 
