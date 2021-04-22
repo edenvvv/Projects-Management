@@ -124,6 +124,14 @@ MongoClient.connect(connectionString, {
         })
 
         router.post('/search', function(req, res) {
+            usersCollection.findOne({ user_name: req.body.search_box}, function(err, user) {
+                if(user == null){
+                    console.log('not found')
+                }
+                console.log(user)
+                console.log(user.user_name)
+            })
+            
             console.log(req.body.search_box)
             return res.redirect('search')
         })
