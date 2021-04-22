@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login - ADEN</title>
+  <title>Serach - ADEN</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,67 +30,37 @@
 
 
   <!-- Template Main CSS File -->
-  <link href="css/login.css" rel="stylesheet">
-  <link href="css/login-util.css" rel="stylesheet">
+  <link href="css/search.css" rel="stylesheet">
+
+
 </head>
 
-<body style="background-color: #666666;">
+<body>
+
   <!-- ======= Header ======= -->
 
   <%- include('partials/header'); %>
 
   <!-- End Header -->
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form action="/login" method="POST" class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Login to continue
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
-					</div>
+  <div class="s004">
+    <form>
+      <fieldset>
+        <legend>WHAT ARE YOU LOOKING FOR?</legend>
+        <div class="inner-form">
+          <div class="input-field">
+            <input class="form-control" id="choices-text-preset-values" type="text" placeholder="Type to search..." />
+            <button class="btn-search" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-			
-
-					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn">
-							Login
-						</button>
-					</div>
-				</form>
-
-				<div class="login100-more" style="background-image: url('img/bg-01.jpg');">
-				</div>
-			</div>
-		</div>
-	</div>
 
 
   <!-- ======= Footer ======= -->
@@ -105,7 +75,6 @@
   <!-- Vendor JS Files -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="vendor/php-email-form/validate.js"></script>
   <script src="vendor/purecounter/purecounter.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
 
@@ -117,7 +86,6 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="js/login-ver.js"></script>
 
   <script src="js/main.js"></script>
 

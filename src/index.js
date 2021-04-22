@@ -113,6 +113,16 @@ MongoClient.connect(connectionString, {
             res.redirect('/')
         })
 
+        router.get('/search', checkToken, function(req, res) {
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                alert('You are not a registered user')
+                res.redirect('/')
+            }
+            res.status(200).render('search')
+        })
+
 
         app.use('/', router) //add the router
 

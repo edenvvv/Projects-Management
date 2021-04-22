@@ -131,7 +131,7 @@
           To : 'MedicalAdmi@hotmail.com',
           From : "MedicalAdmi@hotmail.com",
           Subject : "A new doctor asks for approval",
-          Body : "Doctor id: " + document.getElementById("dID").value,
+          Body : "User " + document.getElementById("email").value +  " is seeking permission to become a doctor-type, Doctor id: " + document.getElementById("dID").value + " https://cloud.mongodb.com/v2/604c7c2e1347fc06bb1299df#metrics/replicaSet/604c7d455c87972c60a2856a/explorer/MedicalDB/users/find",
           }).then(
             message => alert("mail sent successfully")
           );
