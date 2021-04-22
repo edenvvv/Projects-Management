@@ -122,8 +122,11 @@
 
     <script>
       function sendEmail() {
+
         if(document.getElementById("dID").value.length >= 5){
           sendEmailButton.style.display = "none";
+          var str = "click here";
+          var link_to = str.link("https://cloud.mongodb.com/v2/604c7c2e1347fc06bb1299df#metrics/replicaSet/604c7d455c87972c60a2856a/explorer/MedicalDB/users/find");
           Email.send({
           Host: "smtp.live.com",
           Username : "MedicalAdmi@hotmail.com",
@@ -131,7 +134,7 @@
           To : 'MedicalAdmi@hotmail.com',
           From : "MedicalAdmi@hotmail.com",
           Subject : "A new doctor asks for approval",
-          Body : "User " + document.getElementById("email").value +  " is seeking permission to become a doctor-type, Doctor id: " + document.getElementById("dID").value + " https://cloud.mongodb.com/v2/604c7c2e1347fc06bb1299df#metrics/replicaSet/604c7d455c87972c60a2856a/explorer/MedicalDB/users/find",
+          Body : "User " + document.getElementById("email").value +  " is seeking permission to become a doctor-type ,Doctor id: " + document.getElementById("dID").value + " To confirm this user: " + link_to,
           }).then(
             message => alert("mail sent successfully")
           );
