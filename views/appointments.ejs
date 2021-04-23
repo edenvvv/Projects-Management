@@ -67,7 +67,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <span class="form-label">Date</span>
-                                    <input class="form-control" type="date" name="date" id="date" required>
+                                    <input class="form-control" type="date" min="2000-01-01" max="2099-01-01" name="date" id="date" required>
                                 </div>
                             </div>
 
@@ -154,6 +154,27 @@
   <script src="vendor/purecounter/purecounter.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
 
+
+  <script>
+    /* make appointments only in available time */
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+    dd='0'+dd
+    } 
+    if(mm<10){
+    mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("date").setAttribute("min", today);
+
+    console.log(today)
+
+  </script>
+
   <script>
     function appointmentpopup() {
         if(document.getElementById("phone").value.length == 10){
@@ -162,7 +183,7 @@
     }
   </script>
 
-
+    
 
   <!--===============================================================================================-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -34,6 +34,7 @@ MongoClient.connect(connectionString, {
         app.locals.userName = 0
 
 
+        
         router.get('/', function(req, res) {
             res.status(200).render('home')
         })
