@@ -87,6 +87,20 @@
             </div>   
   
             <p id="text" style="display:none">until the admin confirm you are a doctor, you registered as a simple user</p>
+
+            <div class="col-md-7" id="d_clinic" style="display:none">
+              <div class="form-group">
+                  <span class="form-label">work_clinic</span>
+                  <select name="work_clinic" id="work_clinic" class="form-control" required>
+                      <option value="clalit">Choose work clinic </option>
+                      <option value="clalit">clalit </option>
+                      <option value="maccabi">maccabi </option>
+                      <option value="leumit">leumit </option>
+                  </select>
+                  <span class="select-arrow"></span>
+              </div>
+          </div> 
+
             <div id="inp" class="form-group" style="display:none">
                 <label for="">doctorID:</label>
                 <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID">
@@ -119,15 +133,18 @@
     <script>
       function doctorFunction() {
         var checkBox = document.getElementById("doctor");
+        var clinic = document.getElementById("d_clinic");
         var text = document.getElementById("text");
         var inp = document.getElementById("inp");
         var sendEmailButton = document.getElementById("sendEmailButton");
         if (checkBox.checked == true){
           text.style.display = "block";
+          clinic.style.display = "block";
           inp.style.display = "block";
           sendEmailButton.style.display = "block";
         } else {
            text.style.display = "none";
+           clinic.style.display = "none";
            inp.style.display = "none";
            sendEmailButton.style.display = "none";
         }
