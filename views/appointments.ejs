@@ -124,7 +124,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-btn">
-                                    <button type="submit" class="submit-btn">Make an appointment</button>
+                                    <button type="submit" onclick="appointmentpopup()" class="submit-btn">Make an appointment</button>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,13 @@
   <script src="vendor/purecounter/purecounter.js"></script>
   <script src="vendor/swiper/swiper-bundle.min.js"></script>
 
-
+  <script>
+    function appointmentpopup() {
+        if(document.getElementById("phone").value.length == 10){
+            alert("The appointment was saved successfully")
+        }
+    }
+  </script>
 
 
 
