@@ -20,6 +20,7 @@ MongoClient.connect(connectionString, {
         console.log('Connected to Database')
         const db = client.db('MedicalDB')
         const usersCollection = db.collection('users')
+        const appointmentsCollection = db.collection('appointments')
         app.set('view engine', 'ejs')
 
         app.use(express.static('public'))
@@ -52,7 +53,7 @@ MongoClient.connect(connectionString, {
                 if (user) {
                     if (user.password === req.body.pass) {
                         console.log('User and password is correct')
-                        const accessToken = jwt.sign({ email: user.email, role: user.role }, accessTokenSecret)
+                        const accessToken = jwt.sign({ email: user.email, role: user.role, user_name: user.user_name }, accessTokenSecret)
                         res.cookie('authcookie', accessToken, { maxAge: 900000, httpOnly: true })
                         app.locals.userLoggedIn = 1
                         app.locals.userName = user.user_name
@@ -118,7 +119,7 @@ MongoClient.connect(connectionString, {
 
             if (role == -1 || role == undefined) {
                 alert('You are not a registered user')
-                res.redirect('/')
+                return res.redirect('/')
             }
             res.status(200).render('search')
         })
@@ -134,6 +135,25 @@ MongoClient.connect(connectionString, {
             
             console.log(req.body.search_box)
             return res.redirect('search')
+        })
+
+        router.get('/appointments', checkToken, function(req, res) {
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                alert('You are not a registered user')
+                return res.redirect('/')
+            }
+            res.status(200).render('appointments')
+        })
+
+        router.post('/appointments', checkToken, (req, res) => {
+            req.body.user_name = req.user.user_name 
+            appointmentsCollection.insertOne(req.body)
+                .then(
+                    res.redirect('/')
+                )
+                .catch(error => console.error(error))
         })
 
 
