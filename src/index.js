@@ -34,6 +34,7 @@ MongoClient.connect(connectionString, {
         app.locals.userName = 0
 
         app.locals.the_user = {}
+        app.locals.the_appointments = {}
         
         router.get('/', function(req, res) {
             res.status(200).render('home')
@@ -161,6 +162,10 @@ MongoClient.connect(connectionString, {
 
         router.get('/details', function(req, res) {
             return res.status(200).render('details')
+        })
+
+        router.get('/appointments-records', function(req, res) {
+            return res.status(200).render('appointments-records')
         })
 
 
