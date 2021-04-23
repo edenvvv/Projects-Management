@@ -101,6 +101,11 @@
               </div>
           </div> 
 
+          <div id="Specialty" class="form-group" style="display:none">
+            <label for="">Specialty:</label>
+            <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="3-25" name="Specialty">
+        </div>
+
             <div id="inp" class="form-group" style="display:none">
                 <label for="">doctorID:</label>
                 <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID">
@@ -133,17 +138,20 @@
     <script>
       function doctorFunction() {
         var checkBox = document.getElementById("doctor");
+        var specialty = document.getElementById("Specialty");
         var clinic = document.getElementById("d_clinic");
         var text = document.getElementById("text");
         var inp = document.getElementById("inp");
         var sendEmailButton = document.getElementById("sendEmailButton");
         if (checkBox.checked == true){
           text.style.display = "block";
+          specialty.style.display = "block";
           clinic.style.display = "block";
           inp.style.display = "block";
           sendEmailButton.style.display = "block";
         } else {
            text.style.display = "none";
+           specialty.style.display = "none";
            clinic.style.display = "none";
            inp.style.display = "none";
            sendEmailButton.style.display = "none";
