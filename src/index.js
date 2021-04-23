@@ -33,7 +33,7 @@ MongoClient.connect(connectionString, {
         app.locals.userLoggedIn = 0 // 0 - Disconnected user, 1 - Connected user
         app.locals.userName = 0
 
-
+        app.locals.the_user = {}
         
         router.get('/', function(req, res) {
             res.status(200).render('home')
@@ -57,6 +57,7 @@ MongoClient.connect(connectionString, {
                         const accessToken = jwt.sign({ email: user.email, role: user.role, user_name: user.user_name }, accessTokenSecret)
                         res.cookie('authcookie', accessToken, { maxAge: 900000, httpOnly: true })
                         app.locals.userLoggedIn = 1
+                        app.locals.the_user = user
                         app.locals.userName = user.user_name
                         return res.redirect('/')
                     }
@@ -155,6 +156,11 @@ MongoClient.connect(connectionString, {
                     res.redirect('/')
                 )
                 .catch(error => console.error(error))
+        })
+
+
+        router.get('/details', function(req, res) {
+            return res.status(200).render('details')
         })
 
 
