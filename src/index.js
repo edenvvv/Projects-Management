@@ -30,9 +30,8 @@ MongoClient.connect(connectionString, {
 
         app.use(cookieParser())
 
-        app.locals.userLoggedIn = 0 // 0 - Disconnected user, 1 - Connected user
+        app.locals.userLoggedIn = 0 
         app.locals.userName = 0
-
         app.locals.the_user = {}
         app.locals.the_appointments = {}
         
@@ -160,7 +159,13 @@ MongoClient.connect(connectionString, {
         })
 
 
-        router.get('/details', function(req, res) {
+        router.get('/details', checkToken, function(req, res) {
+            const { role } = req.user
+    
+            if (role == -1 || role == undefined) {
+                alert('You are not a registered user')
+                return res.redirect('/')
+            }
             return res.status(200).render('details')
         })
 
