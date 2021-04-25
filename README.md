@@ -1,35 +1,24 @@
-# Health-care website
+# Projects-Management
 
 ## <a href="https://projects-management-ade.herokuapp.com/">Live Demo</a>
 
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
+## Requirements:
 
-## General info
-A website for managing a health system that allows communication between patient and doctor, scheduling appointments and receiving information about doctors who are registered with the system. There are three known users in the system: admin, doctor and simple user. To save the information of the system, we used the MongoDB atlas.
-	
-## Technologies
-Project is created with:
-* Node.js version: 14.16.0 (and up)
-* MongoDB version: 4.4 (and up)
-	
-## Setup
-To run this project, install it locally using npm:
+- Node.js 14.16.0 and up <br/>
+- MongoDB 4.4 and up
 
-```
-$ npm install
-$ npm install express
-$ npm install nodemon
-$ npm install chai-http
-$ npm install ejs
-$ npm install mongodb
-$ npm install cookie-parser
-$ npm install jsonwebtoken
-$ npm install passport
-$ npm install alert
+## Modules requirements :
 
-$ npm run dev
-```
+`npm install express`<br/>
+`npm install nodemon`<br/>
+`npm install chai-http`<br/>
+`npm install ejs`<br/>
+`npm install mongodb`<br/>
+`npm install cookie-parser`<br/>
+`npm install jsonwebtoken`<br/>
+`npm install passport`<br/>
+`npm install alert`<br/>
 
+## Run :
+
+`npm run dev`

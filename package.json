@@ -30,7 +30,7 @@
     "jquery": "^3.6.0",
     "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.6.4",
+    "mongodb": "^3.6.6",
     "node-popup": "^0.1.14",
     "passport": "^0.4.1",
     "sendmail": "^1.6.1",
