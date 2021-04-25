@@ -14,7 +14,7 @@
         <li><a class="nav-link scrollto" href="/test">test</a></li>
         <li><a class="nav-link scrollto" href="/search">Search</a></li>
         <li><a class="nav-link scrollto" href="#">PAGE1</a></li>
-        <% if (userLoggedIn == 0) { %>
+        <% if (!user_sess) { %>
           <li><a class="nav-link scrollto" href="/signup">Sign up</a></li>
           <li ><a class="nav-link scrollto" href="/login">Login</a></li>
         <% } else { %>
@@ -25,8 +25,8 @@
     </nav><!-- .navbar -->
 
     <a href="/appointments" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
-    <% if (userName != 0) { %>
-      <span class="welcome-message">Welcome <a href=/details> <%= userName %> </a> &nbsp;</span>
+    <% if (user_sess) { %>
+      <span class="welcome-message">Welcome <a href=/details> <%= user_sess.user_name %> </a> &nbsp;</span>
     <% } %>
 
   </div>

@@ -7,6 +7,7 @@ const MongoClient = require('mongodb').MongoClient
 const connectionString = 'mongodb+srv://team15:Ade123321!@cluster0.3jopa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
+const session = require('express-session')
 const accessTokenSecret = '6f6794a83fc9f561f1089dc70217f1946e76f7a892d45dedff1c7a3d3b2dacd5c869d30b295716c552a20442a3cf229c2446d6cbf9075ab229e05e9d7377cb3b'
 
 
@@ -30,10 +31,22 @@ MongoClient.connect(connectionString, {
 
         app.use(cookieParser())
 
-        app.locals.userLoggedIn = 0 
+        app.use(session({
+            secret: "sosecret",
+            saveUninitialized: false,
+            resave: false
+          }))
+        
+          // middleware to make 'user' available to all templates
+        app.use(function(req, res, next) {
+            res.locals.user_sess = req.session.user_sess
+            next()
+        })
+
+        /*app.locals.userLoggedIn = 0 
         app.locals.userName = 0
         app.locals.the_user = {}
-        app.locals.the_appointments = {}
+        app.locals.the_appointments = {}*/
         
         router.get('/', function(req, res) {
             res.status(200).render('home')
@@ -50,15 +63,20 @@ MongoClient.connect(connectionString, {
         })
 
         router.post('/login', (req, res) => {
-            usersCollection.findOne({ email: req.body.email }, function(err, user) {
-                if (user) {
-                    if (user.password === req.body.pass) {
+            var sess = req.session
+            usersCollection.findOne({ email: req.body.email }, function(err, user_db) {
+                if (user_db) {
+                    if (user_db.password === req.body.pass) {
                         console.log('User and password is correct')
-                        const accessToken = jwt.sign({ email: user.email, role: user.role, user_name: user.user_name }, accessTokenSecret)
+                        const accessToken = jwt.sign({ email: user_db.email, role: user_db.role, user_name: user_db.user_name }, accessTokenSecret)
                         res.cookie('authcookie', accessToken, { maxAge: 900000, httpOnly: true })
-                        app.locals.userLoggedIn = 1
-                        app.locals.the_user = user
-                        app.locals.userName = user.user_name
+                        //app.locals.userLoggedIn = 1
+                        //app.locals.the_user = user_db
+                        //app.locals.userName = user_db.user_name
+
+                        req.session.user_sess = user_db
+    
+
 
                         return res.redirect('/')
                     }
