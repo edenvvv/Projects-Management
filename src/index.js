@@ -59,6 +59,8 @@ MongoClient.connect(connectionString, {
                         app.locals.userLoggedIn = 1
                         app.locals.the_user = user
                         app.locals.userName = user.user_name
+                        module.exports = app.listen(5321)
+
                         return res.redirect('/')
                     }
                 }
