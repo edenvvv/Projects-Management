@@ -32,7 +32,7 @@ MongoClient.connect(connectionString, {
         app.use(cookieParser())
 
         app.use(session({
-            secret: "sosecret",
+            secret: 'sosecret',
             saveUninitialized: false,
             resave: false
           }))
@@ -42,11 +42,6 @@ MongoClient.connect(connectionString, {
             res.locals.user_sess = req.session.user_sess
             next()
         })
-
-        /*app.locals.userLoggedIn = 0 
-        app.locals.userName = 0
-        app.locals.the_user = {}
-        app.locals.the_appointments = {}*/
         
         router.get('/', function(req, res) {
             res.status(200).render('home')
@@ -63,16 +58,12 @@ MongoClient.connect(connectionString, {
         })
 
         router.post('/login', (req, res) => {
-            var sess = req.session
             usersCollection.findOne({ email: req.body.email }, function(err, user_db) {
                 if (user_db) {
                     if (user_db.password === req.body.pass) {
                         console.log('User and password is correct')
                         const accessToken = jwt.sign({ email: user_db.email, role: user_db.role, user_name: user_db.user_name }, accessTokenSecret)
                         res.cookie('authcookie', accessToken, { maxAge: 900000, httpOnly: true })
-                        //app.locals.userLoggedIn = 1
-                        //app.locals.the_user = user_db
-                        //app.locals.userName = user_db.user_name
 
                         req.session.user_sess = user_db
     
@@ -129,8 +120,11 @@ MongoClient.connect(connectionString, {
             if (role == -1 || role == undefined) {
                 alert('You are not a registered user, you have no reason to log out')
             }
-            app.locals.userLoggedIn = 0
-            app.locals.userName = 0
+            req.session.destroy((err) => {
+                if(err) {
+                    return console.log(err);
+                }
+            })
             res.clearCookie('authcookie')
             res.redirect('/')
         })
