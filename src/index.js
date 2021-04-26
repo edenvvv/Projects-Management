@@ -84,7 +84,6 @@ MongoClient.connect(connectionString, {
             })
         })
 
-
         router.get('/signup', checkToken, function(req, res) {
             const { role } = req.user
                 // only users who are not login can enter
@@ -189,7 +188,6 @@ MongoClient.connect(connectionString, {
 
         app.use('/', router) //add the router
 
-
     })
     .catch(error => console.error(error))
 
@@ -207,7 +205,6 @@ function checkToken(req, res, next) {
         }
     })
 }
-
 
 
 module.exports = app.listen(app_port)
