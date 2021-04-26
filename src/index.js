@@ -122,7 +122,7 @@ MongoClient.connect(connectionString, {
             }
             req.session.destroy((err) => {
                 if(err) {
-                    return console.log(err);
+                    return console.log(err)
                 }
             })
             res.clearCookie('authcookie')
