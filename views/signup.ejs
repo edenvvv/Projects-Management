@@ -69,7 +69,7 @@
             <div class="col-md-7">
               <div class="form-group">
                   <span class="form-label">clinic</span>
-                  <select name="clinic" id="clinic" class="form-control" required>
+                  <select name="clinic" id="clinic" class="form-control">
                       <option value="clalit">Choose clinic </option>
                       <option value="clalit">clalit </option>
                       <option value="maccabi">maccabi </option>
@@ -91,8 +91,8 @@
             <div class="col-md-7" id="d_clinic" style="display:none">
               <div class="form-group">
                   <span class="form-label">work clinic</span>
-                  <select name="work_clinic" id="work_clinic" class="form-control" required>
-                      <option value="clalit">Choose work clinic </option>
+                  <select name="work_clinic" id="work_clinic" class="form-control">
+                      <option value="clalit">Other </option>
                       <option value="clalit">clalit </option>
                       <option value="maccabi">maccabi </option>
                       <option value="leumit">leumit </option>
@@ -103,12 +103,12 @@
 
           <div id="Specialty" class="form-group" style="display:none">
             <label for="">Specialty:</label>
-            <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="3-25" name="Specialty">
+            <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="3-25" name="Specialty" >
         </div>
 
             <div id="inp" class="form-group" style="display:none">
                 <label for="">doctorID:</label>
-                <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID">
+                <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID" >
             </div>
             <input id="sendEmailButton" type="button" value="Request for approval" onclick="sendEmail()" style="display:none"/>
             
