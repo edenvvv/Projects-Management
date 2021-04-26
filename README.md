@@ -21,6 +21,7 @@ To run this project, install it locally using npm:
 ```
 $ npm install
 $ npm install express
+$ npm install express-session
 $ npm install nodemon
 $ npm install chai-http
 $ npm install ejs
