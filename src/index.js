@@ -44,6 +44,10 @@ MongoClient.connect(connectionString, {
         })
         
         router.get('/', function(req, res) {
+            /*appointmentsCollection.find({user_name: 'nig'}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+              })*/
             res.status(200).render('home')
         })
 
@@ -172,6 +176,10 @@ MongoClient.connect(connectionString, {
 
 
         router.get('/details', checkToken, function(req, res) {
+            /* appointmentsCollection.find({user_name: 'nig'}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+              }) */
             const { role } = req.user
     
             if (role == -1 || role == undefined) {
