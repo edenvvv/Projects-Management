@@ -40,14 +40,14 @@ MongoClient.connect(connectionString, {
           // middleware to make 'user' available to all templates
         app.use(function(req, res, next) {
             res.locals.user_sess = req.session.user_sess
+            res.locals.appointments_sess = req.session.appointments_sess
             next()
         })
         
         router.get('/', function(req, res) {
-            /*appointmentsCollection.find({user_name: 'nig'}).toArray(function(err, result) {
-                if (err) throw err;
-                console.log(result);
-              })*/
+            if(req.session.appointments_sess != undefined){
+                console.log(req.session.appointments_sess[0].user_name)
+            }
             res.status(200).render('home')
         })
 
@@ -175,11 +175,11 @@ MongoClient.connect(connectionString, {
         })
 
 
-        router.get('/details', checkToken, function(req, res) {
-            /* appointmentsCollection.find({user_name: 'nig'}).toArray(function(err, result) {
-                if (err) throw err;
-                console.log(result);
-              }) */
+        router.get('/details', checkToken, async function(req, res) {
+        const appointment = await appointmentsCollection.find().toArray()
+        req.session.appointments_sess = appointment
+        //console.log(req.session.appointments_sess)
+            
             const { role } = req.user
     
             if (role == -1 || role == undefined) {
