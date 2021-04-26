@@ -45,9 +45,7 @@ MongoClient.connect(connectionString, {
         })
         
         router.get('/', function(req, res) {
-            if(req.session.appointments_sess != undefined){
-                console.log(req.session.appointments_sess[0].user_name)
-            }
+            console.log(req.session.appointments_sess)
             res.status(200).render('home')
         })
 
@@ -176,7 +174,10 @@ MongoClient.connect(connectionString, {
 
 
         router.get('/details', checkToken, async function(req, res) {
-        const appointment = await appointmentsCollection.find().toArray()
+        var appointment = await appointmentsCollection.find({user_name:req.user.user_name}).toArray()
+        if(appointment.length == 0){
+            appointment = undefined
+        }
         req.session.appointments_sess = appointment
         //console.log(req.session.appointments_sess)
             
