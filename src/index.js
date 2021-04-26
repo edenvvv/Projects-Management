@@ -45,7 +45,7 @@ MongoClient.connect(connectionString, {
         })
         
         router.get('/', function(req, res) {
-            console.log(req.session.appointments_sess)
+            //console.log(req.session.appointments_sess)
             res.status(200).render('home')
         })
 
