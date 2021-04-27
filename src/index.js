@@ -174,13 +174,7 @@ MongoClient.connect(connectionString, {
 
 
         router.get('/details', checkToken, async function(req, res) {
-        var appointment = await appointmentsCollection.find({user_name:req.user.user_name}).toArray()
-        if(appointment.length == 0){
-            appointment = undefined
-        }
-        req.session.appointments_sess = appointment
-        //console.log(req.session.appointments_sess)
-            
+
             const { role } = req.user
     
             if (role == -1 || role == undefined) {
@@ -190,7 +184,18 @@ MongoClient.connect(connectionString, {
             return res.status(200).render('details')
         })
 
-        router.get('/appointments-records', function(req, res) {
+        router.post('/details', checkToken, async function(req, res) {
+            
+            var appointment = await appointmentsCollection.find({user_name:req.user.user_name}).toArray()
+            if(appointment.length == 0){
+                appointment = undefined
+            }
+            req.session.appointments_sess = appointment
+            return res.redirect('appointments-records')
+
+        })
+
+        router.get('/appointments-records', checkToken, function(req, res) {
             return res.status(200).render('appointments-records')
         })
 

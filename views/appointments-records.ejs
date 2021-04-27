@@ -1,11 +1,125 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> appointments records - ADEN</title>
-    </head>
-    <body>
-        your next appointment:
-        <%= the_appointments %>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Serach - ADEN</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="css/appointment-record.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <%- include('partials/header'); %>
+
+  <!-- End Header -->
+
+  <br>
+  <br>
+
+  <!--====form section start====-->
+  <div class="table-data">
+    <table border="1" >
+        <tr>
+            <th>S.N          </th>
+            <th>Name         </th>
+            <th>Email Address</th>
+            <th>Date         </th>
+            <th>Time         </th>
+            <th>Doctor       </th>
+            <th>Department   </th>
+            <th>Phone        </th>
+        </tr>
         
-    </body>
+        <%
+        if(appointments_sess){
+        var i=1;
+        appointments_sess.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.name %></td>
+            <td><%=data.email %></td>
+            <td><%=data.date %></td>
+            <td><%=data.time %></td>
+            <td><%=data.doctor %></td>
+            <td><%=data.department %></td>
+            <td><%=data.phone %></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="8">No Appointments Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+  <!-- ======= Footer ======= -->
+ 
+  <%- include('partials/footer'); %>
+
+  <!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="vendor/purecounter/purecounter.js"></script>
+  <script src="vendor/swiper/swiper-bundle.min.js"></script>
+
+
+
+
+
+  <!--===============================================================================================-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Template Main JS File -->
+
+  <script src="js/main.js"></script>
+
+</body>
+
 </html>
