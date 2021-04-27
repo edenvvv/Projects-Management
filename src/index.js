@@ -196,6 +196,12 @@ MongoClient.connect(connectionString, {
         })
 
         router.get('/appointments-records', checkToken, function(req, res) {
+            const { role } = req.user
+    
+            if (role == -1 || role == undefined) {
+                alert('You are not a registered user')
+                return res.redirect('/')
+            }
             return res.status(200).render('appointments-records')
         })
 
