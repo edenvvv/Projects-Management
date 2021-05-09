@@ -92,7 +92,7 @@ MongoClient.connect(connectionString, {
             if (role == -1 || role == undefined) {
                 return res.status(200).render('signup')
             }
-            alert('You are already logged in, if you want to sign up you are welcome but you must log out before')
+            //alert('You are already logged in, if you want to sign up you are welcome but you must log out before')
             return res.redirect('/')
         })
 
@@ -119,7 +119,8 @@ MongoClient.connect(connectionString, {
             const { role } = req.user
                 // Only login users can log out
             if (role == -1 || role == undefined) {
-                alert('You are not a registered user, you have no reason to log out')
+                //alert('You are not a registered user, you have no reason to log out')
+                return res.redirect('/')
             }
             req.session.destroy((err) => {
                 if(err) {
@@ -134,7 +135,7 @@ MongoClient.connect(connectionString, {
             const { role } = req.user
 
             if (role == -1 || role == undefined) {
-                alert('You are not a registered user')
+                //alert('You are not a registered user')
                 return res.redirect('/')
             }
             res.status(200).render('search')
@@ -157,7 +158,7 @@ MongoClient.connect(connectionString, {
             const { role } = req.user
 
             if (role == -1 || role == undefined) {
-                alert('You are not a registered user')
+                //alert('You are not a registered user')
                 return res.redirect('/')
             }
             res.status(200).render('appointments')
@@ -178,7 +179,7 @@ MongoClient.connect(connectionString, {
             const { role } = req.user
     
             if (role == -1 || role == undefined) {
-                alert('You are not a registered user')
+                //alert('You are not a registered user')
                 return res.redirect('/')
             }
             return res.status(200).render('details')
@@ -199,7 +200,7 @@ MongoClient.connect(connectionString, {
             const { role } = req.user
     
             if (role == -1 || role == undefined) {
-                alert('You are not a registered user')
+                //alert('You are not a registered user')
                 return res.redirect('/')
             }
             return res.status(200).render('appointments-records')

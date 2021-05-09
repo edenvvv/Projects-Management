@@ -12,21 +12,22 @@
       <ul>
         <li><a class="nav-link scrollto active" href="/">Home</a></li>
         <!-- <li><a class="nav-link scrollto" href="/test">test</a></li> -->
-        <li><a class="nav-link scrollto" href="/search">Search</a></li>
         <% if (!user_sess) { %>
           <li><a class="nav-link scrollto" href="/signup">Sign up</a></li>
           <li ><a class="nav-link scrollto" href="/login">Login</a></li>
         <% } else { %>
+          <li><a class="nav-link scrollto" href="/search">Search</a></li>
           <li ><a class="nav-link scrollto" href="/logout">Logout</a></li>
         <% } %>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->
 
-    <a href="/appointments" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
     <% if (user_sess) { %>
-      <span class="welcome-message">Welcome <a href=/details> <%= user_sess.user_name %> </a> &nbsp;</span>
+      <a href="/appointments" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      <% if (user_sess) { %>
+        <span class="welcome-message">Welcome <a href=/details> <%= user_sess.user_name %> </a> &nbsp;</span>
+      <% } %>
     <% } %>
-
   </div>
 </header><!-- End Header -->
