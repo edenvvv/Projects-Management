@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken')
 const session = require('express-session')
 const accessTokenSecret = '6f6794a83fc9f561f1089dc70217f1946e76f7a892d45dedff1c7a3d3b2dacd5c869d30b295716c552a20442a3cf229c2446d6cbf9075ab229e05e9d7377cb3b'
-const nodemailer = require("nodemailer")
+const nodemailer = require('nodemailer')
 const alert = require('alert')
 
 
@@ -267,25 +267,25 @@ function sendConfirmationEmail(name, email, ref, date, total_days) {
     // This information is supposed to be hidden in the config.js file but we left it
     // exposed for the project testers so they can validate the test.
     const transport = nodemailer.createTransport({
-        service: "Hotmail",
+        service: 'Hotmail',
         auth: {
-            user: "MedicalAdmi@hotmail.com",
-            pass: "Ade123321!",
+            user: 'MedicalAdmi@hotmail.com',
+            pass: 'Ade123321!',
         },
     })
 
     transport.sendMail({
-      from: "MedicalAdmi@hotmail.com",
+      from: 'MedicalAdmi@hotmail.com',
       to: email,
-      subject: "Confirmation of booking flight insurancet",
+      subject: 'Confirmation of booking flight insurancet',
       html: `<h1>Flight Insurancet Confirmation</h1>
           <h2>Hello ${name}</h2>
           <p>Thank you for choosing to book flight insurance through us! <br/> 
           The insurance will take effect on: ${date} for ${total_days} days <br/>
           Reference number: ${ref}</p> <br/>
           </div>`,
-    }).catch(err => console.log(err));
-  };
+    }).catch(err => console.log(err))
+  }
 
 module.exports = app.listen(app_port)
 console.log(`app is running. port: ${app_port}`)
