@@ -56,12 +56,12 @@
               <label for="email"><i class="fa fa-envelope"></i> Email</label>
               <input type="text" id="email" name="email" placeholder="john@example.com" required>
               <label for="adr"><i class="fa fa-address-card-o"></i> ID</label>
-              <input type="text" id="adr" name="address" placeholder="123456789" pattern="[0-9]{9}" required>
+              <input type="text" id="id" name="id" placeholder="123456789" pattern="[0-9]{9}" required>
               <div class="row">
                 <label for="city"><i class=""></i> Filght date</label>
                 <input type="date" min="2000-01-01" max="2099-01-01" name="date" id="date" placeholder="Departure" required>
                 <label for="adr"><i class=""></i> Totals days</label>
-                <input type="number" id="adr" min="1" max="100" name="address" placeholder="5" required>
+                <input type="number" id="total_days" min="1" max="100" name="total_days" placeholder="5" required>
               </div>
             </div>
   
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col-50">
                   <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018" pattern="2[0-9]{3}" required>
+                  <input type="number" id="expyear" name="expyear" placeholder="2021" min="2021" max="2100" required>
                 </div>
                 <div class="col-50">
                   <label for="cvv">CVV</label>
@@ -87,7 +87,7 @@
             </div>
   
           </div>
-          <input type="submit" value="Checkout" class="btn">
+          <input type="submit" value="Checkout" class="btn" onclick="confirmation_message()">
         </form>
       </div>
     </div>
@@ -129,6 +129,18 @@
     console.log(today)
 
   </script>
+
+    <script>
+        function confirmation_message(){
+            if(document.getElementById("fname").value.length > 0 && document.getElementById("email").value.length > 7 && document.getElementById("id").value.length == 9 
+            && document.getElementById("date").value.length > 0 && document.getElementById("total_days").value.length > 0 && document.getElementById("cname").value.length > 0
+            && document.getElementById("ccnum").value.length == 19 && document.getElementById("expmonth").value.length > 0 && document.getElementById("expyear").value.length > 0
+            && document.getElementById("cvv").value.length == 3){
+                console.log("test")
+                alert("Your order has been confirmed! Email with confirmation of order details sent to email: " + document.getElementById("email").value)
+            }
+        }
+    </script>
 
 
 
