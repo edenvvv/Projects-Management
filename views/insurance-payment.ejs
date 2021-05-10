@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Insurance payment - ADEN</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="css/insurance-payment.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <%- include('partials/header'); %>
+
+  <!-- End Header -->
+  
+  <div class="row">
+    <div class="col-75">
+      <div class="container-s">
+        <form action="/insurance-payment" method="POST">
+  
+          <div class="row">
+            <div class="col-50">
+              <h3>Billing Address</h3>
+              <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="John M. Doe" required>
+              <label for="email"><i class="fa fa-envelope"></i> Email</label>
+              <input type="text" id="email" name="email" placeholder="john@example.com" required>
+              <label for="adr"><i class="fa fa-address-card-o"></i> ID</label>
+              <input type="text" id="adr" name="address" placeholder="123456789" pattern="[0-9]{9}" required>
+              <div class="row">
+                <label for="city"><i class=""></i> Filght date</label>
+                <input type="date" min="2000-01-01" max="2099-01-01" name="date" id="date" placeholder="Departure" required>
+                <label for="adr"><i class=""></i> Totals days</label>
+                <input type="number" id="adr" min="1" max="100" name="address" placeholder="5" required>
+              </div>
+            </div>
+  
+            <div class="col-50">
+              <h3>Payment</h3>
+              <label for="cname">Name on Card</label>
+              <input type="text" id="cname" name="cardname" placeholder="John More Doe" required>
+              <label for="ccnum">Credit card number</label>
+              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+              <label for="expmonth">Exp Month</label>
+              <input type="number" id="expmonth" name="expmonth" placeholder="1-12" min="1" max="12" required>
+  
+              <div class="row">
+                <div class="col-50">
+                  <label for="expyear">Exp Year</label>
+                  <input type="text" id="expyear" name="expyear" placeholder="2018" pattern="2[0-9]{3}" required>
+                </div>
+                <div class="col-50">
+                  <label for="cvv">CVV</label>
+                  <input type="text" id="cvv" name="cvv" placeholder="352" pattern="[0-9]{3}" required>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+          <input type="submit" value="Checkout" class="btn">
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ======= Footer ======= -->
+ 
+  <%- include('partials/footer'); %>
+
+  <!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="vendor/purecounter/purecounter.js"></script>
+  <script src="vendor/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    /* make appointments only in available time */
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+    dd='0'+dd
+    } 
+    if(mm<10){
+    mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("date").setAttribute("min", today);
+
+    console.log(today)
+
+  </script>
+
+
+
+
+
+  <!--===============================================================================================-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Template Main JS File -->
+
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

@@ -17,6 +17,7 @@
           <li ><a class="nav-link scrollto" href="/login">Login</a></li>
         <% } else { %>
           <li><a class="nav-link scrollto" href="/search">Search</a></li>
+          <li><a class="nav-link scrollto" href="/insurance">Flight insurance</a></li>
           <li ><a class="nav-link scrollto" href="/logout">Logout</a></li>
         <% } %>
       </ul>
@@ -25,9 +26,7 @@
 
     <% if (user_sess) { %>
       <a href="/appointments" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
-      <% if (user_sess) { %>
         <span class="welcome-message">Welcome <a href=/details> <%= user_sess.user_name %> </a> &nbsp;</span>
-      <% } %>
     <% } %>
   </div>
 </header><!-- End Header -->

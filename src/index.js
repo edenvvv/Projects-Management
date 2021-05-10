@@ -206,6 +206,26 @@ MongoClient.connect(connectionString, {
             return res.status(200).render('appointments-records')
         })
 
+        router.get('/insurance', checkToken, function(req, res) {
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                //alert('You are not a registered user')
+                return res.redirect('/')
+            }
+            res.status(200).render('insurance')
+        })
+
+        router.get('/insurance-payment', checkToken, function(req, res) {
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                //alert('You are not a registered user')
+                return res.redirect('/')
+            }
+            res.status(200).render('insurance-payment')
+        })
+
 
         app.use('/', router) //add the router
 
