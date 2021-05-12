@@ -217,13 +217,12 @@ MongoClient.connect(connectionString, {
         })
 
         router.get('/forom', checkToken, function(req, res) {
-            /*
             const { role } = req.user
 
             if (role == -1 || role == undefined) {
                 //alert('You are not a registered user')
                 return res.redirect('/')
-            }*/
+            }
             res.redirect('https://www.tapatalk.com/groups/aden/');
         })
 
