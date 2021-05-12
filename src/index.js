@@ -216,7 +216,7 @@ MongoClient.connect(connectionString, {
             res.status(200).render('insurance')
         })
 
-        router.get('/forom', checkToken, function(req, res) {
+        router.get('/forum', checkToken, function(req, res) {
             const { role } = req.user
 
             if (role == -1 || role == undefined) {
