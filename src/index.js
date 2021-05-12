@@ -223,7 +223,7 @@ MongoClient.connect(connectionString, {
                 //alert('You are not a registered user')
                 return res.redirect('/')
             }
-            res.redirect('https://www.tapatalk.com/groups/aden/');
+            res.redirect('https://www.tapatalk.com/groups/aden/')
         })
 
         router.get('/insurance-payment', checkToken, function(req, res) {
