@@ -216,6 +216,17 @@ MongoClient.connect(connectionString, {
             res.status(200).render('insurance')
         })
 
+        router.get('/forom', checkToken, function(req, res) {
+            /*
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                //alert('You are not a registered user')
+                return res.redirect('/')
+            }*/
+            res.redirect('https://www.tapatalk.com/groups/aden/');
+        })
+
         router.get('/insurance-payment', checkToken, function(req, res) {
             const { role } = req.user
 
