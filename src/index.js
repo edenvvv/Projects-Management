@@ -167,6 +167,7 @@ MongoClient.connect(connectionString, {
         router.post('/appointments', checkToken, (req, /*res*/) => {
             req.body.user_name = req.user.user_name 
             appointmentsCollection.insertOne(req.body)
+            
                 /*.then(
                     //res.redirect('/')
                 )
