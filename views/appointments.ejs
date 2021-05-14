@@ -175,13 +175,7 @@
 
   </script>
 
-  <script>
-    function appointmentpopup() {
-        if(document.getElementById("phone").value.length == 10){
-            alert("The appointment was saved successfully")
-        }
-    }
-  </script>
+
 
     
 
@@ -191,6 +185,15 @@
   <!-- Template Main JS File -->
 
   <script src="js/main.js"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js">
+    function appointmentpopup() {
+        if(document.getElementById("phone").value.length == 10){
+            swal("The appointment was saved successfully");
+            //alert("The appointment was saved successfully")
+        }
+    }
+  </script>
 
 </body>
 
