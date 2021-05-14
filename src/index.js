@@ -41,6 +41,7 @@ MongoClient.connect(connectionString, {
         app.use(function(req, res, next) {
             res.locals.user_sess = req.session.user_sess
             res.locals.appointments_sess = req.session.appointments_sess
+            res.locals.doc_sess = req.session.doc_sess
             next()
         })
         
@@ -141,14 +142,14 @@ MongoClient.connect(connectionString, {
             res.status(200).render('search')
         })
 
-        router.post('/search', function(req, res) {
-            usersCollection.findOne({ user_name: req.body.search_box}, function(err, user) {
-                if(user == null){
-                    console.log('not found')
-                }
-                console.log(user)
-                console.log(user.user_name)
-            })
+        router.post('/search', async function(req, res) {
+            var doc = await usersCollection.find({user_name: req.body.search_box}).toArray()
+            if(doc.length == 0){
+                console.log('not found')
+                doc = undefined
+            } 
+            console.log(doc)
+            req.session.doc_sess = doc
             
             console.log(req.body.search_box)
             return res.redirect('search')
