@@ -164,13 +164,13 @@ MongoClient.connect(connectionString, {
             res.status(200).render('appointments')
         })
 
-        router.post('/appointments', checkToken, (req, res) => {
+        router.post('/appointments', checkToken, (req, /*res*/) => {
             req.body.user_name = req.user.user_name 
             appointmentsCollection.insertOne(req.body)
-                .then(
+                /*.then(
                     //res.redirect('/')
                 )
-                .catch(error => console.error(error))
+                .catch(error => console.error(error))*/
         })
 
 
