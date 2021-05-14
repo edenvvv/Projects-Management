@@ -47,15 +47,26 @@
     <form action="/search" method="POST">
       <fieldset>
         <legend>WHAT ARE YOU LOOKING FOR?</legend>
-        <p>filter:</p>
+        filter:
+        <br>
         <form>
           <input type="radio" id="name" name="fil" value="name" checked='checked'>
-          <label for="name">name</label><br>
+          <label for="name">name</label>
           <input type="radio" id="Specialty" name="fil" value="Specialty">
-          <label for="Specialty">Specialty</label><br>
+          <label for="Specialty">Specialty</label>
           <input type="radio" id="clinic" name="fil" value="clinic">
-          <label for="clinic">clinic</label>
+          <label for="clinic">clinic</label><br>
         </form> 
+        sort:
+        <form>
+          <input type="radio" id="random" name="fil" value="random" checked='checked'>
+          <label for="random">random</label>
+          <input type="radio" id="AtoZ" name="fil" value="AtoZ">
+          <label for="AtoZ">A to Z</label>
+          <input type="radio" id="ZtoA" name="fil" value="ZtoA">
+          <label for="ZtoA">Z to A</label>
+        </form> 
+        <br>
 
         <div class="inner-form">
           <div class="input-field">

@@ -148,10 +148,9 @@ MongoClient.connect(connectionString, {
                 console.log('not found')
                 doc = undefined
             } 
-            console.log(doc)
+            //console.log(doc)
             req.session.doc_sess = doc
-            
-            console.log(req.body.search_box)
+            //console.log(req.body.search_box)
             return res.redirect('search')
         })
 
