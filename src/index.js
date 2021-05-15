@@ -161,6 +161,16 @@ MongoClient.connect(connectionString, {
             return res.redirect('search')
         })
 
+        router.get('/reviews', checkToken, function(req, res) {
+            const { role } = req.user
+
+            if (role == -1 || role == undefined) {
+                //alert('You are not a registered user')
+                return res.redirect('/')
+            }
+            res.redirect('https://www.tapatalk.com/groups/aden/memberlist.php?mode=group&g=9')
+        })
+
         router.get('/appointments', checkToken, async function(req, res) {
             //console.log(req.session.user_sess.clinic)
             const { role } = req.user 
