@@ -42,7 +42,7 @@ MongoClient.connect(connectionString, {
             res.locals.user_sess = req.session.user_sess 
             res.locals.appointments_sess = req.session.appointments_sess
             res.locals.doc_sess = req.session.doc_sess
-            next() 
+            next()
         })
         
         router.get('/', async function(req, res) {

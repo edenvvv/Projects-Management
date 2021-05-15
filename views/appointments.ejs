@@ -88,7 +88,11 @@
                                         if(doc_sess){
                                         doc_sess.forEach(function(data){
                                         %>
-                                        <option value = <%=data.user_name %> > <%=data.user_name %> </option>
+                                            <%
+                                            if(data.work_clinic === user_sess.clinic){
+                                            %>
+                                            <option value = <%=data.user_name %> > <%=data.user_name %> </option>
+                                            <% } %>
                                         <%}) %>
                                         <% } else{ %>
                                             <option value="Hamudi Elaabdoul">Hamudi Elaabdoul</option>
