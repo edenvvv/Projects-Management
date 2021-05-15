@@ -84,9 +84,16 @@
                                     <span class="form-label">Doctor</span>
                                     <select name="doctor" id="doctor" class="form-control" required>
                                         <option value="">Other</option>
-                                        <option value="Dr Kenneth Ain">Dr Kenneth Ain</option>
-                                        <option value="Dr Rhoda Akafuah">Dr Rhoda Akafuah</option>
-                                        <option value="Dr Michael Anstead">Dr Michael Anstead</option>
+                                        <%
+                                        if(doc_sess){
+                                        doc_sess.forEach(function(data){
+                                        %>
+                                        <option value = <%=data.user_name %> > <%=data.user_name %> </option>
+                                        <%}) %>
+                                        <% } else{ %>
+                                            <option value="Hamudi Elaabdoul">Hamudi Elaabdoul</option>
+                                        <% } %>
+
                                     </select>
                                     <span class="select-arrow"></span>
                                 </div>

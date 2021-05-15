@@ -39,14 +39,21 @@ MongoClient.connect(connectionString, {
         
           // middleware to make 'user' available to all templates
         app.use(function(req, res, next) {
-            res.locals.user_sess = req.session.user_sess
+            res.locals.user_sess = req.session.user_sess 
             res.locals.appointments_sess = req.session.appointments_sess
             res.locals.doc_sess = req.session.doc_sess
-            next()
+            next() 
         })
         
-        router.get('/', function(req, res) {
+        router.get('/', async function(req, res) {
             //console.log(req.session.appointments_sess)
+            var doc = await usersCollection.find({role: 'doctor'}).toArray()
+            if(doc.length == 0){ 
+                console.log('not found')
+                doc = undefined
+            } 
+            //console.log(doc) 
+            req.session.doc_sess = doc  
             res.status(200).render('home')
         })
 
@@ -154,19 +161,20 @@ MongoClient.connect(connectionString, {
             return res.redirect('search')
         })
 
-        router.get('/appointments', checkToken, function(req, res) {
-            const { role } = req.user
-
+        router.get('/appointments', checkToken, async function(req, res) {
+            //console.log(req.session.user_sess.clinic)
+            const { role } = req.user 
             if (role == -1 || role == undefined) {
                 //alert('You are not a registered user')
                 return res.redirect('/')
             }
+            
             res.status(200).render('appointments')
-        })
+        }) 
 
         router.post('/appointments', checkToken, (req, /*res*/) => {
             req.body.user_name = req.user.user_name 
-            appointmentsCollection.insertOne(req.body)
+            appointmentsCollection.insertOne(req.body) 
             
                 /*.then(
                     //res.redirect('/')
@@ -272,6 +280,8 @@ function checkToken(req, res, next) {
         }
     })
 }
+
+
 
 function sendConfirmationEmail(name, email, ref, date, total_days) {
 
