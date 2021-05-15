@@ -143,7 +143,7 @@ MongoClient.connect(connectionString, {
         })
 
         router.post('/search', async function(req, res) {
-            var doc = await usersCollection.find({user_name: req.body.search_box}).toArray()
+            var doc = await usersCollection.find({user_name: req.body.search_box, role: 'doctor'}).toArray()
             if(doc.length == 0){
                 console.log('not found')
                 doc = undefined
