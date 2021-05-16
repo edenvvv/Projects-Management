@@ -178,7 +178,7 @@ MongoClient.connect(connectionString, {
                 //alert('You are not a registered user')
                 return res.redirect('/')
             }
-            res.redirect('https://www.tapatalk.com/groups/aden/memberlist.php?mode=group&g=9')
+            res.redirect('https://www.tapatalk.com/groups/aden/doctors-reviews-t4.html')
         })
 
         router.get('/appointments', checkToken, async function(req, res) {
