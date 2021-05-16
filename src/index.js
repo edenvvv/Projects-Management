@@ -22,6 +22,7 @@ MongoClient.connect(connectionString, {
         const usersCollection = db.collection('users')
         const appointmentsCollection = db.collection('appointments')
 
+
         app.set('view engine', 'ejs')
 
         app.use(express.static('public'))
@@ -44,16 +45,19 @@ MongoClient.connect(connectionString, {
             res.locals.doc_sess = req.session.doc_sess
             next()
         })
-        
-        router.get('/', async function(req, res) {
-            //console.log(req.session.appointments_sess)
+
+        app.use(async function(req, res, next) {
             var doc = await usersCollection.find({role: 'doctor'}).toArray()
             if(doc.length == 0){ 
                 console.log('not found')
                 doc = undefined
             } 
             //console.log(doc) 
-            req.session.doc_sess = doc  
+            req.session.doc_sess = doc
+            next()
+        })
+        
+        router.get('/', async function(req, res) {  
             res.status(200).render('home')
         })
 
@@ -107,13 +111,13 @@ MongoClient.connect(connectionString, {
         router.post('/signup', async (req, res) => {
             let unique_email = await usersCollection.findOne({email: req.body.email})
             if (unique_email) {
-                alert('Email Already Exists')
-                return res.redirect('/signup')
+                //alert('Email Already Exists')
+                return res.status(400).render('signup', { err_msg: 'Email Already Exists'})
             }
             let unique_username = await usersCollection.findOne({user_name: req.body.user_name})
             if (unique_username) {
-                alert('Username Already Exists')
-                return res.redirect('/signup')
+                //alert('Username Already Exists')
+                return res.status(400).render('signup', { err_msg: 'UserName Already Exists'})
             }
             req.body.role = 'simple_user'
             usersCollection.insertOne(req.body)
