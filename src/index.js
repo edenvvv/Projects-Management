@@ -107,12 +107,12 @@ MongoClient.connect(connectionString, {
         router.post('/signup', async (req, res) => {
             let unique_email = await usersCollection.findOne({email: req.body.email})
             if (unique_email) {
-                alert("Email Already Exists")
+                alert('Email Already Exists')
                 return res.status(400).redirect('/signup')
             }
             let unique_username = await usersCollection.findOne({user_name: req.body.user_name})
             if (unique_username) {
-                alert("Username Already Exists")
+                alert('Username Already Exists')
                 return res.status(400).redirect('/signup')
             }
             req.body.role = 'simple_user'
