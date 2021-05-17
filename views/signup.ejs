@@ -33,6 +33,7 @@
   <script src="https://smtpjs.com/v3/smtp.js"></script> 
 
 
+
 </head>
 
 <body>
@@ -43,16 +44,22 @@
 
 <!-- End Header -->
 
+
+
+
+
 <div class="wrapper">
     <div class="image-holder">
         <img src="img/registration-form-8.jpg" alt="">
     </div>
     <div class="form-inner">
+
         <form action="/signup" method="POST">
             <div class="form-header">
                 <h3>Sign up</h3>
                 <img src="img/sign-up.png" alt="" class="sign-up-icon">
             </div>
+
             <div class="form-group">
                 <label for="">Username:</label>
                 <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" name="user_name">
@@ -111,6 +118,29 @@
                 <input id="dID" type="password" class="form-control" data-validation="length" data-validation-length="min5" name="doctorID" >
             </div>
             <input id="sendEmailButton" type="button" value="Request for approval" onclick="sendEmail()" style="display:none"/>
+
+            <div class="flash-container">
+              <% const messages = getMessages() %>
+            
+              <% if (messages) { %>
+                   <% Object.entries(messages).forEach((obj) => { %>
+                       <% var category = obj[0] %>
+                       <% var message = obj[1] %>
+                       <!--
+                           BOOTSTRAP ALERTS
+                           https://getbootstrap.com/docs/5.0/components/alerts/#dismissing
+                       -->
+                       <% if (category === 'danger' || category === 'success') { %>
+                       <div class="alert alert-<%= category %> alert-dismissible fade show" role="alert" >
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           <%= message %>
+                       </div>
+                       <% } %>
+            
+                   <% }) %>
+              <% } %>
+            </div>
+
             <button type="submit">create my account</button>
         </form>
 
@@ -134,6 +164,11 @@
     <script src="js/signup-js/jquery-3.3.1.min.js"></script>
     <script src="js/signup-js/jquery.form-validator.min.js"></script>
     <script src="js/signup-js/main.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+
     <script>
       function doctorFunction() {
         var checkBox = document.getElementById("doctor");

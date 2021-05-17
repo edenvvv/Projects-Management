@@ -11,6 +11,7 @@ const session = require('express-session')
 const accessTokenSecret = '6f6794a83fc9f561f1089dc70217f1946e76f7a892d45dedff1c7a3d3b2dacd5c869d30b295716c552a20442a3cf229c2446d6cbf9075ab229e05e9d7377cb3b'
 const nodemailer = require('nodemailer')
 const alert = require('alert')
+var flash = require('express-flash-messages')
 
 
 MongoClient.connect(connectionString, {
@@ -35,7 +36,8 @@ MongoClient.connect(connectionString, {
         app.use(session({
             secret: 'sosecret',
             saveUninitialized: false,
-            resave: false
+            resave: false,
+            cookie: { maxAge: 900000 }
           }))
         
           // middleware to make 'user' available to all templates
@@ -56,6 +58,8 @@ MongoClient.connect(connectionString, {
             req.session.doc_sess = doc
             next()
         })
+
+        app.use(flash())
         
         router.get('/', async function(req, res) {  
             res.status(200).render('home')
@@ -111,13 +115,15 @@ MongoClient.connect(connectionString, {
         router.post('/signup', async (req, res) => {
             let unique_email = await usersCollection.findOne({email: req.body.email})
             if (unique_email) {
-                //alert('Email Already Exists')
-                return res.status(400).render('signup', { err_msg: 'Email Already Exists'})
+                req.flash('danger', 'Email already exists in system, please try with another email.')
+                res.locals.message = req.flash()  
+                return res.redirect('/signup')
             }
             let unique_username = await usersCollection.findOne({user_name: req.body.user_name})
             if (unique_username) {
-                //alert('Username Already Exists')
-                return res.status(400).render('signup', { err_msg: 'UserName Already Exists'})
+                req.flash('danger', 'UserName already exists in system, please try with another UserName.')
+                res.locals.message = req.flash()  
+                return res.redirect('/signup')
             }
             req.body.role = 'simple_user'
             usersCollection.insertOne(req.body)
