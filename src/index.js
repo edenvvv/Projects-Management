@@ -82,11 +82,7 @@ MongoClient.connect(connectionString, {
                         console.log('User and password is correct')
                         const accessToken = jwt.sign({ email: user_db.email, role: user_db.role, user_name: user_db.user_name }, accessTokenSecret)
                         res.cookie('authcookie', accessToken, { maxAge: 900000, httpOnly: true })
-
                         req.session.user_sess = user_db
-    
-
-
                         return res.redirect('/')
                     }
                 }
