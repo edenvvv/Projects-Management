@@ -95,7 +95,7 @@ MongoClient.connect(connectionString, {
                     return res.json(err)
                 }
                 if (req.body.email !== undefined && req.body.pass !== undefined) {
-                    req.flash('danger', 'Invalid username or password, please try again.')
+                    req.flash('danger', 'Invalid email or password, please try again.')
                     res.locals.message = req.flash()  
                     res.redirect('/login')
                 }
