@@ -36,5 +36,6 @@ $ npm install jsonwebtoken
 $ npm install passport
 $ npm install nodemailer
 $ npm install alert
+$ npm install express-flash-messages
 $ npm run dev
 ```
