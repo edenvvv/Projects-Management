@@ -78,7 +78,29 @@
 						</div>
 					</div>
 			
+          <div class="flash-container">
+            <% const messages = getMessages() %>
+          
+            <% if (messages) { %>
+                 <% Object.entries(messages).forEach((obj) => { %>
+                     <% var category = obj[0] %>
+                     <% var message = obj[1] %>
+                     <!--
+                         BOOTSTRAP ALERTS
+                         https://getbootstrap.com/docs/5.0/components/alerts/#dismissing
+                     -->
+                     <% if (category === 'danger' || category === 'success') { %>
+                     <div class="alert alert-<%= category %> alert-dismissible fade show" role="alert" >
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                         <%= message %>
+                     </div>
+                     <% } %>
+          
+                 <% }) %>
+            <% } %>
+          </div>
 
+          
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
 							Login

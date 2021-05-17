@@ -95,8 +95,8 @@ MongoClient.connect(connectionString, {
                     return res.json(err)
                 }
                 if (req.body.email !== undefined && req.body.pass !== undefined) {
-                    alert('invalid username or password, please try again')
-                    console.log('Credentials wrong')
+                    req.flash('danger', 'Invalid username or password, please try again.')
+                    res.locals.message = req.flash()  
                     res.redirect('/login')
                 }
             })
@@ -126,11 +126,10 @@ MongoClient.connect(connectionString, {
                 return res.redirect('/signup')
             }
             req.body.role = 'simple_user'
-            usersCollection.insertOne(req.body)
-                .then(
-                    res.redirect('/')
-                )
-                .catch(error => console.error(error))
+            usersCollection.insertOne(req.body).catch(error => console.error(error))
+            req.flash('success', 'Your registration was successful, please enter the details you registered with and log in.')
+            res.locals.message = req.flash()
+            res.redirect('/login')
         })
 
         router.get('/test', checkToken, function(req, res) {
