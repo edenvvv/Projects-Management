@@ -78,9 +78,9 @@
                   <span class="form-label">clinic</span>
                   <select name="clinic" id="clinic" class="form-control">
                       <option value="Other">Other </option>
-                      <option value="clalit">clalit </option>
-                      <option value="maccabi">maccabi </option>
-                      <option value="leumit">leumit </option>
+                      <option value="clalit">Clalit </option>
+                      <option value="maccabi">Maccabi </option>
+                      <option value="leumit">Leumit </option>
                   </select>
                   <span class="select-arrow"></span>
               </div>
@@ -97,21 +97,29 @@
 
             <div class="col-md-7" id="d_clinic" style="display:none">
               <div class="form-group">
-                  <span class="form-label">work clinic</span>
+                  <span class="form-label">Work clinic:</span>
                   <select name="work_clinic" id="work_clinic" class="form-control">
-                      <option value=" ">  </option>
-                      <option value="clalit">clalit </option>
-                      <option value="maccabi">maccabi </option>
-                      <option value="leumit">leumit </option>
+                      <option value="Other">Other </option>
+                      <option value="clalit">Clalit </option>
+                      <option value="maccabi">Maccabi </option>
+                      <option value="leumit">Leumit </option>
                   </select>
                   <span class="select-arrow"></span>
               </div>
           </div> 
 
-          <div id="Specialty" class="form-group" style="display:none">
-            <label for="">Specialty:</label>
-            <input type="text" class="form-control" data-validation="length alphanumeric" data-validation-length="3-25" name="Specialty" >
-        </div>
+          <div class="col-md-7" id="d_specialty" style="display:none">
+            <div class="form-group">
+                <span class="form-label">Specialty:</span>
+                <select name="Specialty" id="Specialty" class="form-control">
+                    <option value="Other">Other </option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Gynecology">Gynecology</option>
+                </select>
+                <span class="select-arrow"></span>
+            </div>
+        </div> 
 
             <div id="inp" class="form-group" style="display:none">
                 <label for="">doctorID:</label>
