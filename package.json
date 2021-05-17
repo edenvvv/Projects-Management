@@ -30,7 +30,6 @@
     "express": "^4.17.1",
     "express-flash-messages": "^0.1.1",
     "express-session": "^1.17.1",
-    "flash-express": "github:deveshgoyal/flash-express",
     "jquery": "^3.6.0",
     "jsdom": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
