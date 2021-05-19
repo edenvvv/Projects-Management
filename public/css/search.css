@@ -1355,12 +1355,15 @@ th {
 
 table {
   border-collapse: collapse;
-  width: 50%;
+  width: 100%;
+  height: 100%;
 }
 .table-data {
   position: relative;
-  left: 50px;
-  top: 50px;
+  left: 40px;
+  top: 40px;
+  color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 th,
 td {

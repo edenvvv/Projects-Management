@@ -33,6 +33,44 @@
   <link href="css/search.css" rel="stylesheet">
 
 
+  <script type="text/javascript">
+
+function sort(ind) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("tbl1");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[ind];
+      y = rows[i + 1].getElementsByTagName("TD")[ind];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+    </script>
 </head>
 
 <body>
@@ -47,7 +85,7 @@
     <form action="/search" method="POST">
       <fieldset>
         <legend>WHAT ARE YOU LOOKING FOR?</legend>
-        filter:
+        Filter by:
         <br>
         <form>
           <input type="radio" id="name" name="fil" value="name" checked='checked'>
@@ -57,14 +95,14 @@
           <input type="radio" id="clinic" name="fil" value="clinic">
           <label for="clinic">clinic</label><br>
         </form> 
-        sort:
+        Sort by:
         <form>
-          <input type="radio" id="random" name="fil" value="random" checked='checked'>
-          <label for="random">random</label>
-          <input type="radio" id="AtoZ" name="fil" value="AtoZ">
-          <label for="AtoZ">A to Z</label>
-          <input type="radio" id="ZtoA" name="fil" value="ZtoA">
-          <label for="ZtoA">Z to A</label>
+          <input type="radio" id="name" name="fil" value="name" onclick=sort(1)>
+          <label for="name">Name</label>
+          <input type="radio" id="work_clinic" name="fil" value="work_clinic" onclick=sort(3)>
+          <label for="work_clinic">Work Clinic</label>
+          <input type="radio" id="specialty" name="fil" value="specialty" onclick=sort(4)>
+          <label for="specialty">Specialty</label>
         </form> 
         <br>
 
@@ -80,9 +118,9 @@
         </div>
 
         <div class="table-data">
-          <table border="1" >
+          <table border="1" id="tbl1">
               <tr>
-                  <th>No.         </th>
+                  
                   <th>Doctor name </th>
                   <th>email       </th>
                   <th>work clinic </th>
@@ -95,11 +133,11 @@
               doc_sess.forEach(function(data){
               %>
               <tr>
-                  <td><%=i; %></td>
-                  <td><%=data.user_name %></td>
+                  
+                  <td class="sort1"><%=data.user_name %></td>
                   <td><%=data.email %></td>
-                  <td><%=data.work_clinic %></td>
-                  <td><%=data.Specialty %></td>
+                  <td class="sort2"><%=data.work_clinic %></td>
+                  <td class="sort3"><%=data.Specialty %></td>
               </tr>
               <%  i++; }) %>
               <% } else{ %>
@@ -109,14 +147,20 @@
                   </tr>
               <% } %>
           </table>
-          <p>
-            <a class="reviews" href="/reviews" style="text-align: center;">Doctors reviews</a>
-          </p>
+          
           </div>
-
+          <br/>
+          <br/>
+          <p>
+            <strong>
+            <a class="reviews" href="/reviews" style="text-align: center; position: relative; left: 350px; color:black;">Doctors reviews</a>
+            </strong>
+          </p>
       </fieldset>
     </form>
   </div>
+
+  
 
 
 
