@@ -35,42 +35,42 @@
 
   <script type="text/javascript">
 
-function sort(ind) {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("tbl1");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[ind];
-      y = rows[i + 1].getElementsByTagName("TD")[ind];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
+    function sort(ind) {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("tbl1");
+      switching = true;
+      /*Make a loop that will continue until
+      no switching has been done:*/
+      while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+          one from current row and one from the next:*/
+          x = rows[i].getElementsByTagName("TD")[ind];
+          y = rows[i + 1].getElementsByTagName("TD")[ind];
+          //check if the two rows should switch place:
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+        }
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+          and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
       }
     }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-    }
-  }
-}
 
-    </script>
+  </script>
 </head>
 
 <body>
@@ -85,37 +85,33 @@ function sort(ind) {
     <form action="/search" method="POST">
       <fieldset>
         <legend>WHAT ARE YOU LOOKING FOR?</legend>
-        Filter by:
-        <br>
+      
+        <strong>Filter by:</strong>
+        <br/>
         <form>
-          <input type="radio" id="name" name="fil" value="name" checked='checked'>
-          <label for="name">name</label>
-          <input type="radio" id="Specialty" name="fil" value="Specialty">
-          <label for="Specialty">Specialty</label>
-          <input type="radio" id="clinic" name="fil" value="clinic">
-          <label for="clinic">clinic</label><br>
-        </form> 
-        Sort by:
-        <form>
-          <input type="radio" id="name" name="fil" value="name" onclick=sort(1)>
+          <input type="radio" id="filterbyname" name="fil" value="name" checked='checked'>
           <label for="name">Name</label>
-          <input type="radio" id="work_clinic" name="fil" value="work_clinic" onclick=sort(3)>
+          <input type="radio" id="filterbywc" name="fil" value="clinic">
           <label for="work_clinic">Work Clinic</label>
-          <input type="radio" id="specialty" name="fil" value="specialty" onclick=sort(4)>
+          <input type="radio" id="filterbyspecialty" name="fil" value="Specialty">
           <label for="specialty">Specialty</label>
-        </form> 
-        <br>
+        </form>
 
         <div class="inner-form">
           <div class="input-field">
-            <input class="form-control" id="choices-text-preset-values" name="search_box" type="text" placeholder="Type to search..." />
-            <button class="btn-search" type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-              </svg>
-            </button>
+            <input class="form-control" id="choices-text-preset-values" name="search_box" onkeyup="DynamicSearch()" type="text" placeholder="Type to search..." />
           </div>
         </div>
+
+        <strong>Sort Table by:</strong>
+        <form>
+          <input type="radio" id="name" name="fil" value="name" onclick=sort(0)>
+          <label for="name">Name</label>
+          <input type="radio" id="work_clinic" name="fil" value="work_clinic" onclick=sort(2)>
+          <label for="work_clinic">Work Clinic</label>
+          <input type="radio" id="specialty" name="fil" value="specialty" onclick=sort(3)>
+          <label for="specialty">Specialty</label>
+        </form> 
 
         <div class="table-data">
           <table border="1" id="tbl1">
@@ -160,8 +156,6 @@ function sort(ind) {
     </form>
   </div>
 
-  
-
 
 
   <!-- ======= Footer ======= -->
@@ -187,6 +181,44 @@ function sort(ind) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Template Main JS File -->
+
+
+
+  <script>
+    function DynamicSearch() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("choices-text-preset-values");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("tbl1");
+      tr = table.getElementsByTagName("tr");
+      var filterbyname = document.getElementById("filterbyname")
+      var filterbywc = document.getElementById("filterbywc")
+      var filterbyspecialty = document.getElementById("filterbyspecialty")
+      
+      if(filterbyname.checked == true){
+        idx = 0;
+      }
+      else if(filterbywc.checked == true){
+        idx = 2;
+      }
+      else if(filterbyspecialty.checked == true){
+        idx = 3;
+      }
+      
+
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[idx];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+  </script>
 
   <script src="js/main.js"></script>
 
