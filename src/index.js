@@ -164,17 +164,6 @@ MongoClient.connect(connectionString, {
             res.status(200).render('search')
         })
 
-        router.post('/search', async function(req, res) {
-            var doc = await usersCollection.find({user_name: req.body.search_box, role: 'doctor'}).toArray()
-            if(doc.length == 0){
-                console.log('not found')
-                doc = undefined
-            } 
-            //console.log(doc)
-            req.session.doc_sess = doc
-            //console.log(req.body.search_box)
-            return res.redirect('search')
-        })
 
         router.get('/reviews', checkToken, function(req, res) {
             const { role } = req.user
